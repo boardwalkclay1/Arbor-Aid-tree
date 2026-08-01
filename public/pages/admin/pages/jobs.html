@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jobs — Arbor Aid Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta property="og:title" content="Arbor Aid Admin — Jobs">
+  <meta property="og:description" content="Manage jobs for Arbor Aid Tree Service.">
+  <meta property="og:image" content="/img/arbor-aid-logo.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="/img/arbor-aid-logo.jpg" type="image/png">
+
+  <link rel="stylesheet" href="/pages/admin/css/admin.css">
+  <script src="/pages/admin/js/admin.js" defer></script>
+</head>
+
+<body>
+<header class="admin-header">
+  <h1>Jobs</h1>
+  <nav class="admin-nav">
+    <a href="/admin/index.html">Dashboard</a>
+    <a href="/admin/customers.html">Customers</a>
+    <a href="/admin/contracts.html">Contracts</a>
+    <a href="/admin/invoices.html">Invoices</a>
+    <a href="/admin/calendar.html">Calendar</a>
+    <a href="/admin/reviews.html">Reviews</a>
+    <a href="/admin/analytics.html">Analytics</a>
+  </nav>
+</header>
+
+<main>
+  <section class="admin-section">
+    <h2>Create Job</h2>
+
+    <form id="jobForm" class="admin-form">
+      <label>Customer ID</label><input name="customer_id" required>
+      <label>Title</label><input name="title" required>
+      <label>Description</label><textarea name="description"></textarea>
+      <label>Scheduled Date</label><input type="datetime-local" name="scheduled_date">
+      <label>Arrival Window</label><input name="arrival_window">
+      <label>Price Estimate</label><input name="price_estimate">
+      <label>Crew Notes</label><textarea name="crew_notes"></textarea>
+      <button type="button" onclick="createJob('jobForm')">Create Job</button>
+    </form>
+  </section>
+
+  <section class="admin-section">
+    <h2>Scheduled Jobs</h2>
+    <ul id="jobList" class="admin-list"></ul>
+    <div id="jobDetail" class="detail-box"></div>
+  </section>
+</main>
+</body>
+</html>
