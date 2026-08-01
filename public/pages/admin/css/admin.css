@@ -1,0 +1,174 @@
+/* ============================
+   GLOBAL FONTS
+============================ */
+body {
+  margin: 0;
+  padding: 0;
+  background: #111;
+  color: #fff;
+  font-family: 'Inter', sans-serif; /* Regular readable font */
+}
+
+/* Lumberjack font for headers + links + buttons */
+.header-font,
+.link-font,
+.admin-nav a,
+button {
+  font-family: 'Rubik Wet Paint', cursive;
+  font-size: 1.5em; /* 1.5× larger so letters don’t melt together */
+  letter-spacing: 1px;
+}
+
+/* ============================
+   HEADER
+============================ */
+.admin-header {
+  background: #000;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 3px solid red;
+}
+
+.admin-header h1 {
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================
+   NAVIGATION
+============================ */
+.admin-nav {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.admin-nav a {
+  background: red;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s;
+}
+
+.admin-nav a:hover {
+  background: #ff4d4d;
+}
+
+/* ============================
+   SECTIONS
+============================ */
+.admin-section {
+  background: rgba(0,0,0,0.75);
+  margin: 25px;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px black;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ============================
+   FORMS
+============================ */
+.admin-form label {
+  display: block;
+  margin-top: 12px;
+  font-size: 1em;
+}
+
+.admin-form input,
+.admin-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: none;
+  background: #222;
+  color: #fff;
+  font-size: 1em;
+  font-family: 'Inter', sans-serif;
+}
+
+.admin-form textarea {
+  min-height: 100px;
+}
+
+/* ============================
+   BUTTONS
+============================ */
+button {
+  margin-top: 18px;
+  padding: 14px 24px;
+  background: red;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 10px black;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #ff4d4d;
+}
+
+/* ============================
+   LISTS
+============================ */
+.admin-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.admin-list li {
+  background: rgba(255,255,255,0.1);
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-list li:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ============================
+   DETAIL BOXES
+============================ */
+.detail-box {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
+
+/* ============================
+   ANALYTICS BOXES
+============================ */
+.analytics-box {
+  background: rgba(255,255,255,0.1);
+  padding: 16px;
+  border-radius: 10px;
+  margin-top: 12px;
+  font-size: 1em;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ============================
+   CALENDAR EVENTS
+============================ */
+#calendarEvents > div {
+  margin-bottom: 12px;
+  padding: 14px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
