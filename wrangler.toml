@@ -1,0 +1,9 @@
+name = "arbor-aid-tree"
+main = "src/worker.js"
+compatibility_date = "2024-06-01"
+
+[d1_databases]
+  [[d1_databases]]
+  binding = "ARBOR_AID_DB"
+  database_name = "arbor-aid"
+  database_id = "c2d26da4-4965-4641-b997-53eea5a8ee8e"
