@@ -418,3 +418,22 @@ body.page-loaded {
     font-size: 32px;
   }
 }
+/* FIX TOP CONTACT INFO CUTTING OFF */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
+  white-space: nowrap;
+  background: rgba(0,0,0,0.55); /* keeps it ON the block */
+  border-radius: 8px;
+}
+
+.contact-info a {
+  font-size: 18px;
+  line-height: 1.3;
+  display: block;
+}
