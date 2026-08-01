@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings — Arbor Aid Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Social Preview -->
+  <meta property="og:title" content="Arbor Aid Admin — Settings">
+  <meta property="og:description" content="Manage admin settings for Arbor Aid Tree Service.">
+  <meta property="og:image" content="/img/arbor-aid-logo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon (logo) -->
+  <link rel="icon" href="/img/arbor-aid-logo.jpg" type="image/png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Admin Stylesheet -->
+  <link rel="stylesheet" href="/pages/admin/css/admin.css">
+
+  <!-- Admin JS -->
+  <script src="/pages/admin/js/admin.js" defer></script>
+</head>
+
+<body onload="requireAdminLogin()">
+
+<header class="admin-header">
+  <div class="admin-logo-nav" onclick="goToAdminHome()">
+    <img src="/img/arbor-aid-logo.jpg" alt="Arbor Aid Logo" class="admin-logo">
+    <span class="header-font">ARBOR AID ADMIN SETTINGS</span>
+  </div>
+
+  <nav class="admin-nav">
+    <a class="link-font" href="/admin/index.html">Dashboard</a>
+    <a class="link-font" href="/admin/customers.html">Customers</a>
+    <a class="link-font" href="/admin/jobs.html">Jobs</a>
+    <a class="link-font" href="/admin/contracts.html">Contracts</a>
+    <a class="link-font" href="/admin/invoices.html">Invoices</a>
+    <a class="link-font" href="/admin/calendar.html">Calendar</a>
+    <a class="link-font" href="/admin/reviews.html">Reviews</a>
+    <a class="link-font" href="/admin/analytics.html">Analytics</a>
+  </nav>
+</header>
+
+<main>
+  <section class="admin-section">
+    <h2 class="header-font">Change Admin Password</h2>
+
+    <form id="passwordForm" class="admin-form" onsubmit="return handlePasswordChange(event)">
+      <label>Current Password</label>
+      <input type="password" name="current_password" required>
+
+      <label>New Password</label>
+      <input type="password" name="new_password" required>
+
+      <label>Confirm New Password</label>
+      <input type="password" name="confirm_password" required>
+
+      <button type="submit" class="link-font">Update Password</button>
+
+      <p id="passwordError" class="error-text"></p>
+      <p id="passwordSuccess" class="success-text"></p>
+    </form>
+
+    <p class="info-text">
+      Password changes must be verified via the owner email:
+      <strong>victor@arbor-aid.com</strong>.
+    </p>
+
+    <p class="dev-note">
+      Dev access: master password / dev mode stays active so you can always get in while developing.
+    </p>
+  </section>
+</main>
+
+</body>
+</html>
