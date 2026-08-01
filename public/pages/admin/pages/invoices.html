@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoices — Arbor Aid Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta property="og:title" content="Arbor Aid Admin — Invoices">
+  <meta property="og:description" content="Manage invoices for Arbor Aid Tree Service.">
+  <meta property="og:image" content="/img/arbor-aid-logo.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="/img/arbor-aid-logo.jpg" type="image/png">
+
+  <link rel="stylesheet" href="/pages/admin/css/admin.css">
+  <script src="/pages/admin/js/admin.js" defer></script>
+</head>
+
+<body>
+<header class="admin-header">
+  <h1>Invoices</h1>
+  <nav class="admin-nav">
+    <a href="/admin/index.html">Dashboard</a>
+    <a href="/admin/customers.html">Customers</a>
+    <a href="/admin/jobs.html">Jobs</a>
+    <a href="/admin/contracts.html">Contracts</a>
+    <a href="/admin/calendar.html">Calendar</a>
+    <a href="/admin/reviews.html">Reviews</a>
+    <a href="/admin/analytics.html">Analytics</a>
+  </nav>
+</header>
+
+<main>
+  <section class="admin-section">
+    <h2>Create Invoice</h2>
+
+    <form id="invoiceForm" class="admin-form">
+      <label>Customer ID</label><input name="customer_id" required>
+      <label>Job ID</label><input name="job_id">
+      <label>Amount</label><input name="amount">
+      <label>Due Date</label><input type="date" name="due_date">
+      <label>Notes</label><textarea name="notes"></textarea>
+      <button type="button" onclick="sendInvoice('invoiceForm', '/api/admin/invoices')">Create Invoice</button>
+    </form>
+  </section>
+
+  <section class="admin-section">
+    <h2>Send Existing Invoice</h2>
+    <input id="sendInvoiceId" placeholder="Invoice ID">
+    <button onclick="sendExistingInvoice(document.getElementById('sendInvoiceId').value)">Send Invoice</button>
+
+    <h2>Mark Invoice Paid</h2>
+    <input id="paidInvoiceId" placeholder="Invoice ID">
+    <button onclick="markInvoicePaid(document.getElementById('paidInvoiceId').value)">Mark Paid</button>
+  </section>
+</main>
+</body>
+</html>
