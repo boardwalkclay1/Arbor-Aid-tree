@@ -20,7 +20,7 @@ body.page-loaded {
 }
 
 /* BACKGROUND CLASSES — EDIT THESE IMAGES */
-.bg-home { background-image: url('/img/bg-home.jpg'); }
+.bg-home { background-image: url('/img/arbor-index.jpg'); }
 .bg-services { background-image: url('/img/bg-services.jpg'); }
 .bg-gallery { background-image: url('/img/bg-gallery.jpg'); }
 .bg-testimonials { background-image: url('/img/bg-testimonials.jpg'); }
