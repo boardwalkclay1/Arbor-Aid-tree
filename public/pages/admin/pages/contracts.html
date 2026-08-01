@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contracts — Arbor Aid Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta property="og:title" content="Arbor Aid Admin — Contracts">
+  <meta property="og:description" content="Manage contracts for Arbor Aid Tree Service.">
+  <meta property="og:image" content="/img/arbor-aid-logo.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="/img/arbor-aid-logo.jpg" type="image/png">
+
+  <link rel="stylesheet" href="/pages/admin/css/admin.css">
+  <script src="/pages/admin/js/admin.js" defer></script>
+</head>
+
+<body>
+<header class="admin-header">
+  <h1>Contracts</h1>
+  <nav class="admin-nav">
+    <a href="/admin/index.html">Dashboard</a>
+    <a href="/admin/customers.html">Customers</a>
+    <a href="/admin/jobs.html">Jobs</a>
+    <a href="/admin/invoices.html">Invoices</a>
+    <a href="/admin/calendar.html">Calendar</a>
+    <a href="/admin/reviews.html">Reviews</a>
+    <a href="/admin/analytics.html">Analytics</a>
+  </nav>
+</header>
+
+<main>
+  <section class="admin-section">
+    <h2>Create Contract</h2>
+
+    <form id="contractForm" class="admin-form">
+      <label>Customer ID</label><input name="customer_id" required>
+      <label>Job ID (optional)</label><input name="job_id">
+      <label>Service Description</label><textarea name="service_description"></textarea>
+      <label>Price</label><input name="price">
+      <label>Terms</label><textarea name="terms"></textarea>
+      <button type="button" onclick="sendContract('contractForm', '/api/admin/contracts')">Create Contract</button>
+    </form>
+  </section>
+
+  <section class="admin-section">
+    <h2>Send Existing Contract</h2>
+    <input id="sendContractId" placeholder="Contract ID">
+    <button onclick="sendExistingContract(document.getElementById('sendContractId').value)">Send Contract</button>
+  </section>
+</main>
+</body>
+</html>
