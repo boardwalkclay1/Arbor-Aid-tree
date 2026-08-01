@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Analytics — Arbor Aid Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Social Preview -->
+  <meta property="og:title" content="Arbor Aid Admin — Analytics">
+  <meta property="og:description" content="View business and site analytics for Arbor Aid Tree Service.">
+  <meta property="og:image" content="/img/arbor-aid-logo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/img/arbor-aid-logo.jpg" type="image/png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Admin CSS -->
+  <link rel="stylesheet" href="/pages/admin/css/admin.css">
+
+  <!-- Admin JS -->
+  <script src="/pages/admin/js/admin.js" defer></script>
+</head>
+
+<body>
+
+<header class="admin-header">
+  <h1 class="header-font">Analytics</h1>
+
+  <nav class="admin-nav">
+    <a class="link-font" href="/admin/index.html">Dashboard</a>
+    <a class="link-font" href="/admin/customers.html">Customers</a>
+    <a class="link-font" href="/admin/jobs.html">Jobs</a>
+    <a class="link-font" href="/admin/contracts.html">Contracts</a>
+    <a class="link-font" href="/admin/invoices.html">Invoices</a>
+    <a class="link-font" href="/admin/calendar.html">Calendar</a>
+    <a class="link-font" href="/admin/reviews.html">Reviews</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- BUSINESS ANALYTICS -->
+  <section class="admin-section">
+    <h2 class="header-font">Business Analytics</h2>
+
+    <div class="analytics-box">
+      <strong>Total Jobs:</strong> <span id="adminJobs">—</span>
+    </div>
+
+    <div class="analytics-box">
+      <strong>Total Revenue:</strong> <span id="adminRevenue">$0</span>
+    </div>
+
+    <div class="analytics-box">
+      <strong>Open Contracts:</strong> <span id="adminOpenContracts">—</span>
+    </div>
+
+    <button class="link-font" onclick="loadAdminAnalytics()">Refresh Analytics</button>
+  </section>
+
+  <!-- SITE ANALYTICS -->
+  <section class="admin-section">
+    <h2 class="header-font">Site Analytics</h2>
+
+    <div id="siteAnalytics">
+      <!-- Filled by admin.js -->
+    </div>
+
+    <button class="link-font" onclick="loadSiteAnalytics()">Refresh Site Analytics</button>
+  </section>
+
+</main>
+
+</body>
+</html>
