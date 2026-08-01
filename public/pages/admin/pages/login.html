@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Arbor Aid Admin Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Social Preview -->
+  <meta property="og:title" content="Arbor Aid Admin Login">
+  <meta property="og:description" content="Secure login for Arbor Aid Tree Service admin dashboard.">
+  <meta property="og:image" content="/img/arbor-aid-logo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon (logo) -->
+  <link rel="icon" href="/img/arbor-aid-logo.jpg" type="image/png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Admin Stylesheet -->
+  <link rel="stylesheet" href="/pages/admin/css/admin.css">
+
+  <!-- Admin JS -->
+  <script src="/pages/admin/js/admin.js" defer></script>
+</head>
+
+<body>
+
+<header class="admin-header">
+  <div class="admin-logo-nav">
+    <img src="/img/arbor-aid-logo.jpg" alt="Arbor Aid Logo" class="admin-logo">
+    <span class="header-font">ARBOR AID ADMIN LOGIN</span>
+  </div>
+</header>
+
+<main>
+  <section class="admin-section">
+    <h2 class="header-font">Admin Login</h2>
+
+    <form id="loginForm" class="admin-form" onsubmit="return handleAdminLogin(event)">
+      <label>Admin Password</label>
+      <input type="password" name="password" required>
+
+      <button type="submit" class="link-font">Login</button>
+
+      <p id="loginError" class="error-text"></p>
+    </form>
+
+    <p class="dev-note">
+      Dev access: use the master password or dev mode while building.
+    </p>
+  </section>
+</main>
+
+</body>
+</html>
