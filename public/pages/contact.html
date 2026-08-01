@@ -1,0 +1,81 @@
+<!-- =========================
+   contact.html
+========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact — Arbor Aid Tree Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta property="og:title" content="Contact Arbor Aid Tree Service">
+  <meta property="og:description" content="Call or email Arbor Aid for tree service, estimates, and emergency help.">
+  <meta property="og:image" content="/img/arbor-aid-logo.jpg">
+
+  <link rel="icon" href="/img/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/css/global.css">
+  <script src="/js/app.js" defer></script>
+</head>
+<body class="bg-contact">
+
+<header class="main-header">
+  <div class="logo-menu" onclick="toggleMenu()">
+    <img src="/img/arbor-aid-logo.jpg" alt="Arbor Aid Logo">
+    <span class="brand-name">ARBOR AID TREE SERVICE</span>
+  </div>
+  <nav id="mainNav" class="nav-links">
+    <a href="/index.html">Home</a>
+    <a href="/pages/services.html">Services</a>
+    <a href="/pages/gallery.html">Gallery</a>
+    <a href="/pages/testimonials.html">Testimonials</a>
+    <a href="/pages/service-areas.html">Service Areas</a>
+    <a href="/pages/about.html">About</a>
+    <a href="/pages/contact.html" class="contact-btn active">Contact</a>
+  </nav>
+  <div class="contact-info">
+    <a href="tel:+14045673819" class="phone">📞 (404) 567‑3819</a>
+    <a href="mailto:victor@arbor-aid.com" class="email">✉️ victor@arbor-aid.com</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <h1>Contact Arbor Aid Tree Service</h1>
+  <p>Fast response for estimates, scheduling, and emergency service.</p>
+</section>
+
+<section class="contact-section">
+  <div class="contact-details">
+    <h2>Call or Email</h2>
+    <p><a href="tel:+14045673819">Call: (404) 567‑3819</a></p>
+    <p><a href="mailto:victor@arbor-aid.com">Email: victor@arbor-aid.com</a></p>
+  </div>
+
+  <div class="contact-form-wrapper">
+    <h2>Send a Message</h2>
+    <form id="contactForm" method="POST" action="/api/contact">
+      <label>Name</label>
+      <input type="text" name="name" required>
+
+      <label>Phone</label>
+      <input type="text" name="phone" required>
+
+      <label>Email</label>
+      <input type="email" name="email" required>
+
+      <label>Message</label>
+      <textarea name="message" required></textarea>
+
+      <button type="submit" class="cta-btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2026 Arbor Aid Tree Service</p>
+</footer>
+
+<a href="tel:+14045673819" class="floating-btn">Call Arbor Aid</a>
+<div id="leaf-container"></div>
+
+</body>
+</html>
