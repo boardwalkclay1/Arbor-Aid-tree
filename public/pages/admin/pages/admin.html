@@ -2,8 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Arbor Aid Admin Panel</title>
+  <title>Arbor Aid Admin Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Social Preview -->
+  <meta property="og:title" content="Arbor Aid Admin Dashboard">
+  <meta property="og:description" content="Admin dashboard for Arbor Aid Tree Service.">
+  <meta property="og:image" content="/img/arbor-aid-logo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon (logo) -->
+  <link rel="icon" href="/img/arbor-aid-logo.jpg" type="image/png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- Admin Stylesheet -->
   <link rel="stylesheet" href="/pages/admin/css/admin.css">
@@ -12,218 +25,95 @@
   <script src="/pages/admin/js/admin.js" defer></script>
 </head>
 
-<body>
+<body onload="requireAdminLogin()">
 
 <header class="admin-header">
-  <h1>Arbor Aid Admin Dashboard</h1>
+  <div class="admin-logo-nav" onclick="goToAdminHome()">
+    <img src="/img/arbor-aid-logo.jpg" alt="Arbor Aid Logo" class="admin-logo">
+    <span class="header-font">ARBOR AID ADMIN</span>
+  </div>
+
   <nav class="admin-nav">
-    <button onclick="showSection('analytics')">Analytics</button>
-    <button onclick="showSection('customers')">Customers</button>
-    <button onclick="showSection('jobs')">Jobs</button>
-    <button onclick="showSection('contracts')">Contracts</button>
-    <button onclick="showSection('invoices')">Invoices</button>
-    <button onclick="showSection('calendar')">Calendar</button>
-    <button onclick="showSection('reviews')">Reviews</button>
+    <a class="link-font" href="/admin/index.html">Dashboard</a>
+    <a class="link-font" href="/admin/customers.html">Customers</a>
+    <a class="link-font" href="/admin/jobs.html">Jobs</a>
+    <a class="link-font" href="/admin/contracts.html">Contracts</a>
+    <a class="link-font" href="/admin/invoices.html">Invoices</a>
+    <a class="link-font" href="/admin/calendar.html">Calendar</a>
+    <a class="link-font" href="/admin/reviews.html">Reviews</a>
+    <a class="link-font" href="/admin/analytics.html">Analytics</a>
+    <a class="link-font" href="/admin/settings.html">Settings</a>
   </nav>
 </header>
 
 <main>
 
-  <!-- ============================
-       ANALYTICS
-  ============================= -->
+  <!-- BUSINESS ANALYTICS CARD ROW -->
   <section id="analytics" class="admin-section">
-    <h2>Business Analytics</h2>
+    <h2 class="header-font">Business Overview</h2>
 
-    <div class="analytics-box">
-      <strong>Total Jobs:</strong> <span id="adminJobs">—</span>
+    <div class="card-row">
+      <div class="admin-card" onclick="location.href='/admin/jobs.html'">
+        <h3 class="header-font">Jobs</h3>
+        <p>Total Jobs: <span id="cardJobsTotal">—</span></p>
+        <p>Scheduled Today: <span id="cardJobsToday">—</span></p>
+      </div>
+
+      <div class="admin-card" onclick="location.href='/admin/invoices.html'">
+        <h3 class="header-font">Invoices</h3>
+        <p>Outstanding: <span id="cardInvoicesOpen">—</span></p>
+        <p>Paid This Month: <span id="cardInvoicesPaid">—</span></p>
+      </div>
+
+      <div class="admin-card" onclick="location.href='/admin/contracts.html'">
+        <h3 class="header-font">Contracts</h3>
+        <p>Unsigned: <span id="cardContractsOpen">—</span></p>
+        <p>Signed This Week: <span id="cardContractsSigned">—</span></p>
+      </div>
+
+      <div class="admin-card" onclick="location.href='/admin/analytics.html'">
+        <h3 class="header-font">Site Traffic</h3>
+        <p>Visits Today: <span id="cardVisitsToday">—</span></p>
+        <p>Page Views: <span id="cardPageViews">—</span></p>
+      </div>
     </div>
 
-    <div class="analytics-box">
-      <strong>Total Revenue:</strong> <span id="adminRevenue">$0</span>
+    <button class="link-font" onclick="loadAdminAnalytics()">Refresh Analytics</button>
+  </section>
+
+  <!-- PREVIEW CARDS FOR DATA -->
+  <section class="admin-section">
+    <h2 class="header-font">Quick Previews</h2>
+
+    <div class="card-row">
+      <div class="admin-card" onclick="location.href='/admin/customers.html'">
+        <h3 class="header-font">Latest Customers</h3>
+        <ul id="previewCustomers" class="preview-list">
+          <!-- Filled by admin.js with real data -->
+        </ul>
+      </div>
+
+      <div class="admin-card" onclick="location.href='/admin/jobs.html'">
+        <h3 class="header-font">Upcoming Jobs</h3>
+        <ul id="previewJobs" class="preview-list">
+          <!-- Filled by admin.js with real data -->
+        </ul>
+      </div>
+
+      <div class="admin-card" onclick="location.href='/admin/reviews.html'">
+        <h3 class="header-font">Latest Reviews</h3>
+        <ul id="previewReviews" class="preview-list">
+          <!-- Filled by admin.js with real data -->
+        </ul>
+      </div>
+
+      <div class="admin-card" onclick="location.href='/admin/calendar.html'">
+        <h3 class="header-font">Calendar Events</h3>
+        <ul id="previewCalendar" class="preview-list">
+          <!-- Filled by admin.js with real data -->
+        </ul>
+      </div>
     </div>
-
-    <div class="analytics-box">
-      <strong>Open Contracts:</strong> <span id="adminOpenContracts">—</span>
-    </div>
-
-    <button onclick="loadAdminAnalytics()">Refresh Analytics</button>
-
-    <h3>Site Analytics</h3>
-    <div id="siteAnalytics"></div>
-  </section>
-
-  <!-- ============================
-       CUSTOMERS
-  ============================= -->
-  <section id="customers" class="admin-section hidden">
-    <h2>Customers</h2>
-
-    <form id="customerForm" class="admin-form">
-      <label>Name</label>
-      <input name="name" required>
-
-      <label>Phone</label>
-      <input name="phone">
-
-      <label>Email</label>
-      <input name="email">
-
-      <label>Address</label>
-      <input name="address">
-
-      <label>Notes</label>
-      <textarea name="notes"></textarea>
-
-      <button type="button" onclick="createCustomer('customerForm')">Save Customer</button>
-    </form>
-
-    <h3>Customer List</h3>
-    <ul id="customerList" class="admin-list"></ul>
-
-    <div id="customerDetail" class="detail-box"></div>
-  </section>
-
-  <!-- ============================
-       JOBS
-  ============================= -->
-  <section id="jobs" class="admin-section hidden">
-    <h2>Jobs</h2>
-
-    <form id="jobForm" class="admin-form">
-      <label>Customer ID</label>
-      <input name="customer_id" required>
-
-      <label>Title</label>
-      <input name="title" required>
-
-      <label>Description</label>
-      <textarea name="description"></textarea>
-
-      <label>Scheduled Date</label>
-      <input type="datetime-local" name="scheduled_date">
-
-      <label>Arrival Window</label>
-      <input name="arrival_window">
-
-      <label>Price Estimate</label>
-      <input name="price_estimate">
-
-      <label>Crew Notes</label>
-      <textarea name="crew_notes"></textarea>
-
-      <button type="button" onclick="createJob('jobForm')">Create Job</button>
-    </form>
-
-    <h3>Scheduled Jobs</h3>
-    <ul id="jobList" class="admin-list"></ul>
-
-    <div id="jobDetail" class="detail-box"></div>
-  </section>
-
-  <!-- ============================
-       CONTRACTS
-  ============================= -->
-  <section id="contracts" class="admin-section hidden">
-    <h2>Create Contract</h2>
-
-    <form id="contractForm" class="admin-form">
-      <label>Customer ID</label>
-      <input name="customer_id" required>
-
-      <label>Job ID (optional)</label>
-      <input name="job_id">
-
-      <label>Service Description</label>
-      <textarea name="service_description"></textarea>
-
-      <label>Price</label>
-      <input name="price">
-
-      <label>Terms</label>
-      <textarea name="terms"></textarea>
-
-      <button type="button" onclick="sendContract('contractForm', '/api/admin/contracts')">Create Contract</button>
-    </form>
-
-    <h3>Send Existing Contract</h3>
-    <input id="sendContractId" placeholder="Contract ID">
-    <button onclick="sendExistingContract(document.getElementById('sendContractId').value)">Send Contract</button>
-  </section>
-
-  <!-- ============================
-       INVOICES
-  ============================= -->
-  <section id="invoices" class="admin-section hidden">
-    <h2>Create Invoice</h2>
-
-    <form id="invoiceForm" class="admin-form">
-      <label>Customer ID</label>
-      <input name="customer_id" required>
-
-      <label>Job ID</label>
-      <input name="job_id">
-
-      <label>Amount</label>
-      <input name="amount">
-
-      <label>Due Date</label>
-      <input type="date" name="due_date">
-
-      <label>Notes</label>
-      <textarea name="notes"></textarea>
-
-      <button type="button" onclick="sendInvoice('invoiceForm', '/api/admin/invoices')">Create Invoice</button>
-    </form>
-
-    <h3>Send Existing Invoice</h3>
-    <input id="sendInvoiceId" placeholder="Invoice ID">
-    <button onclick="sendExistingInvoice(document.getElementById('sendInvoiceId').value)">Send Invoice</button>
-
-    <h3>Mark Invoice Paid</h3>
-    <input id="paidInvoiceId" placeholder="Invoice ID">
-    <button onclick="markInvoicePaid(document.getElementById('paidInvoiceId').value)">Mark Paid</button>
-  </section>
-
-  <!-- ============================
-       CALENDAR
-  ============================= -->
-  <section id="calendar" class="admin-section hidden">
-    <h2>Calendar</h2>
-
-    <form id="calendarForm" class="admin-form">
-      <label>Job ID</label>
-      <input name="job_id">
-
-      <label>Title</label>
-      <input name="title" required>
-
-      <label>Start Date/Time</label>
-      <input type="datetime-local" name="start_datetime" required>
-
-      <label>End Date/Time</label>
-      <input type="datetime-local" name="end_datetime">
-
-      <label>Crew Assigned</label>
-      <input name="crew_assigned">
-
-      <label>Notes</label>
-      <textarea name="notes"></textarea>
-
-      <button type="button" onclick="createCalendarEvent('calendarForm')">Create Event</button>
-    </form>
-
-    <h3>Upcoming Events</h3>
-    <div id="calendarEvents"></div>
-  </section>
-
-  <!-- ============================
-       REVIEWS
-  ============================= -->
-  <section id="reviews" class="admin-section hidden">
-    <h2>Latest Reviews</h2>
-    <button onclick="loadAdminReviews()">Load Reviews</button>
-    <div id="adminReviews"></div>
   </section>
 
 </main>
