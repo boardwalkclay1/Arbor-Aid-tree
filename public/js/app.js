@@ -4,20 +4,29 @@ function toggleMenu() {
   if (nav) nav.classList.toggle("open");
 }
 
-// Falling leaves animation
+// Falling leaves animation (UPDATED)
 const leafContainer = document.getElementById("leaf-container");
 
 function createLeaf() {
   if (!leafContainer) return;
+
   const leaf = document.createElement("div");
   leaf.classList.add("leaf");
+
+  // random horizontal position
   leaf.style.left = Math.random() * 100 + "vw";
+
+  // random fall speed
   leaf.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
   leafContainer.appendChild(leaf);
+
+  // remove leaf after animation
   setTimeout(() => leaf.remove(), 6000);
 }
 
-setInterval(createLeaf, 1800);
+// faster, smoother, constant falling leaves
+setInterval(createLeaf, 300);
 
 // Fade-in on load + initial data fetch
 window.addEventListener("load", () => {
@@ -33,7 +42,6 @@ async function loadHomeReviews() {
   if (!container) return;
 
   try {
-    // Worker endpoint: returns latest public reviews from D1
     const res = await fetch("/api/reviews?limit=3");
     if (!res.ok) throw new Error("Failed to load reviews");
     const reviews = await res.json();
@@ -61,7 +69,6 @@ async function loadHomeStats() {
   if (!jobsEl || !reviewsEl) return;
 
   try {
-    // Worker endpoint: aggregates stats from D1
     const res = await fetch("/api/stats");
     if (!res.ok) throw new Error("Failed to load stats");
     const stats = await res.json();
@@ -74,7 +81,7 @@ async function loadHomeStats() {
   }
 }
 
-// Load weather for Atlanta (Worker can proxy a weather API)
+// Load weather for Atlanta
 async function loadWeather() {
   const summaryEl = document.getElementById("weatherSummary");
   const tempEl = document.getElementById("weatherTemp");
@@ -95,7 +102,6 @@ async function loadWeather() {
 
 /* =========================
    ADMIN PAGE HOOKS (Victor)
-   /admin/index.html will use these
 ========================= */
 
 // Create contract/invoice payload and send to Worker
@@ -119,7 +125,6 @@ async function sendContract(formId, endpoint) {
     const result = await res.json();
 
     alert("Contract created and emailed.");
-    // result.pdfUrl could be used to download PDF
     if (result.pdfUrl) {
       const link = document.createElement("a");
       link.href = result.pdfUrl;
@@ -133,7 +138,7 @@ async function sendContract(formId, endpoint) {
   }
 }
 
-// Load admin analytics (jobs, revenue, etc.)
+// Load admin analytics
 async function loadAdminAnalytics() {
   const panel = document.getElementById("adminAnalytics");
   if (!panel) return;
