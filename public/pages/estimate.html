@@ -9,46 +9,75 @@
   <meta property="og:description" content="Request a free estimate for tree removal, trimming, stump grinding, or storm cleanup.">
   <meta property="og:image" content="/img/arbor-aid-logo.jpg">
 
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="icon" href="/img/arbor-aid-logo.jpg">
   <link rel="stylesheet" href="/css/global.css">
   <script src="/js/app.js" defer></script>
 </head>
 
 <body class="bg-estimate">
 
-<header class="main-header">
+<!-- ============================
+     HEADER (NO BACKGROUND)
+============================ -->
+<header class="main-header" style="background:none; border:none; box-shadow:none;">
+
+  <!-- LOGO + MENU BUTTON -->
   <div class="logo-menu" onclick="toggleMenu()">
     <img src="/img/arbor-aid-logo.jpg">
-    <span class="brand-name">ARBOR AID TREE SERVICE</span>
+    <span class="brand-name header-font">ARBOR AID TREE SERVICE</span>
   </div>
 
-  <nav id="mainNav" class="nav-links">
-    <a href="/index.html">Home</a>
-    <a href="/pages/services.html">Services</a>
-    <a href="/pages/gallery.html">Gallery</a>
-    <a href="/pages/testimonials.html">Testimonials</a>
-    <a href="/pages/service-areas.html">Service Areas</a>
-    <a href="/pages/faq.html">FAQ</a>
-    <a href="/pages/emergency.html">Emergency</a>
-    <a href="/pages/insurance.html">Insurance</a>
-    <a href="/pages/about.html">About</a>
-    <a href="/pages/estimate.html" class="active">Estimate</a>
-    <a href="/pages/contact.html" class="contact-btn">Contact</a>
+  <!-- TOP NAV: ONLY HOME -->
+  <nav class="top-nav">
+    <a href="/index.html" class="btn-link link-font active">Home</a>
   </nav>
 
+  <!-- CONTACT INFO -->
   <div class="contact-info">
-    <a href="tel:+14045673819">📞 (404) 567‑3819</a>
-    <a href="mailto:victor@arbor-aid.com">✉️ victor@arbor-aid.com</a>
+    <a href="tel:+14045673819" class="btn-link link-font">📞 (404) 567‑3819</a>
+    <a href="mailto:victor@arbor-aid.com" class="btn-link link-font">✉️ victor@arbor-aid.com</a>
   </div>
 </header>
 
+<!-- ============================
+     SLIDE-OUT MENU
+============================ -->
+<div id="sideMenu" class="side-menu">
+  <div class="side-menu-inner">
+
+    <a href="/pages/services.html" class="btn-link link-font bubble-link">Services</a>
+    <a href="/pages/gallery.html" class="btn-link link-font bubble-link">Gallery</a>
+    <a href="/pages/testimonials.html" class="btn-link link-font bubble-link">Testimonials</a>
+    <a href="/pages/service-areas.html" class="btn-link link-font bubble-link">Service Areas</a>
+    <a href="/pages/faq.html" class="btn-link link-font bubble-link">FAQ</a>
+    <a href="/pages/emergency.html" class="btn-link link-font bubble-link">Emergency</a>
+    <a href="/pages/insurance.html" class="btn-link link-font bubble-link">Insurance</a>
+    <a href="/pages/about.html" class="btn-link link-font bubble-link">About</a>
+    <a href="/pages/estimate.html" class="btn-link link-font bubble-link">Estimate</a>
+    <a href="/pages/contact.html" class="btn-link link-font bubble-link">Contact</a>
+
+    <hr>
+
+    <a href="/admin/index.html" class="btn-link link-font bubble-link">Owner Login (Victor)</a>
+
+  </div>
+</div>
+
+<!-- ============================
+     HERO
+============================ -->
 <section class="page-hero">
-  <h1>Request a Free Estimate</h1>
+  <h1 class="header-font">Request a Free Estimate</h1>
   <p>Fast, accurate quotes for any tree service.</p>
 </section>
 
+<!-- ============================
+     ESTIMATE FORM (STYLED)
+============================ -->
 <section class="estimate-section">
-  <form id="estimateForm" method="POST" action="/api/estimate">
+
+  <form id="estimateForm" method="POST" action="/api/estimate" class="styled-form">
+
     <label>Your Name</label>
     <input type="text" name="name" required>
 
@@ -70,15 +99,22 @@
     <label>Describe Your Project</label>
     <textarea name="details" required></textarea>
 
-    <button type="submit" class="cta-btn">Submit Estimate Request</button>
+    <button type="submit" class="cta-btn link-font bubble-link">Submit Estimate Request</button>
+
   </form>
+
 </section>
 
+<!-- ============================
+     FOOTER
+============================ -->
 <footer class="footer">
   <p>© 2026 Arbor Aid Tree Service</p>
 </footer>
 
+<!-- Floating Contact Button -->
 <a href="tel:+14045673819" class="floating-btn">Call Arbor Aid</a>
+
 <div id="leaf-container"></div>
 
 </body>
