@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reviews — Arbor Aid Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta property="og:title" content="Arbor Aid Admin — Reviews">
+  <meta property="og:description" content="View customer reviews for Arbor Aid Tree Service.">
+  <meta property="og:image" content="/img/arbor-aid-logo.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="/img/arbor-aid-logo.jpg" type="image/png">
+
+  <link rel="stylesheet" href="/pages/admin/css/admin.css">
+  <script src="/pages/admin/js/admin.js" defer></script>
+</head>
+
+<body>
+<header class="admin-header">
+  <h1>Reviews</h1>
+  <nav class="admin-nav">
+    <a href="/admin/index.html">Dashboard</a>
+    <a href="/admin/customers.html">Customers</a>
+    <a href="/admin/jobs.html">Jobs</a>
+    <a href="/admin/contracts.html">Contracts</a>
+    <a href="/admin/invoices.html">Invoices</a>
+    <a href="/admin/calendar.html">Calendar</a>
+    <a href="/admin/analytics.html">Analytics</a>
+  </nav>
+</header>
+
+<main>
+  <section class="admin-section">
+    <h2>Latest Reviews</h2>
+    <button onclick="loadAdminReviews()">Load Reviews</button>
+    <div id="adminReviews"></div>
+  </section>
+</main>
+</body>
+</html>
