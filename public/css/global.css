@@ -23,17 +23,17 @@ body.page-loaded {
 }
 
 /* BACKGROUND CLASSES — SEPARATE PER PAGE */
-.bg-home         { background-image: url('/img/arbor-home.jpg'); }
-.bg-services     { background-image: url('/img/arbor-services.jpg'); }
-.bg-gallery      { background-image: url('/img/arbor-gallery.jpg'); }
-.bg-testimonials { background-image: url('/img/arbor-testimonials.jpg'); }
-.bg-areas        { background-image: url('/img/arbor-areas.jpg'); }
-.bg-faq          { background-image: url('/img/arbor-faq.jpg'); }
-.bg-emergency    { background-image: url('/img/arbor-emergency.jpg'); }
-.bg-insurance    { background-image: url('/img/arbor-insurance.jpg'); }
-.bg-about        { background-image: url('/img/arbor-about.jpg'); }
-.bg-contact      { background-image: url('/img/arbor-contact.jpg'); }
-.bg-estimate     { background-image: url('/img/arbor-estimate.jpg'); }
+.bg-home         { background-image: url('/img/arbor-index.jpg'); }
+.bg-services     { background-image: url('/img/arbor-index.jpg'); }
+.bg-gallery      { background-image: url('/img/arbor-index.jpg'); }
+.bg-testimonials { background-image: url('/img/arbor-index.jpg'); }
+.bg-areas        { background-image: url('/img/arbor-index.jpg'); }
+.bg-faq          { background-image: url('/img/arbor-index.jpg'); }
+.bg-emergency    { background-image: url('/img/arbor-index.jpg'); }
+.bg-insurance    { background-image: url('/img/arbor-index.jpg'); }
+.bg-about        { background-image: url('/img/arbor-index.jpg'); }
+.bg-contact      { background-image: url('/img/arbor-index.jpg'); }
+.bg-estimate     { background-image: url('/img/arbor-index.jpg'); }
 
 /* HEADER */
 .main-header {
