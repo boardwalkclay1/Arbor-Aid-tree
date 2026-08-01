@@ -1,5 +1,6 @@
-// ========== BASIC HELPERS ==========
-
+/* ============================================================
+   BASIC API HELPER
+============================================================ */
 async function api(url, options = {}) {
   const res = await fetch(url, {
     headers: { "Content-Type": "application/json" },
@@ -9,17 +10,165 @@ async function api(url, options = {}) {
   return res.json();
 }
 
-// ========== ANALYTICS ==========
+/* ============================================================
+   AUTH SYSTEM
+============================================================ */
+
+const DEV_BYPASS = true; // you always get in during development
+
+function requireAdminLogin() {
+  if (DEV_BYPASS) return;
+
+  const token = localStorage.getItem("adminToken");
+  if (!token) {
+    location.href = "/admin/login.html";
+  }
+}
+
+async function handleAdminLogin(e) {
+  e.preventDefault();
+  const form = document.getElementById("loginForm");
+  const password = form.password.value.trim();
+
+  try {
+    const res = await api("/api/admin/login", {
+      method: "POST",
+      body: JSON.stringify({ password })
+    });
+
+    if (res.ok) {
+      localStorage.setItem("adminToken", res.token);
+      location.href = "/admin/index.html";
+    } else {
+      document.getElementById("loginError").textContent = "Incorrect password.";
+    }
+  } catch (err) {
+    document.getElementById("loginError").textContent = "Login failed.";
+  }
+}
+
+async function handlePasswordChange(e) {
+  e.preventDefault();
+  const form = document.getElementById("passwordForm");
+
+  const current_password = form.current_password.value.trim();
+  const new_password = form.new_password.value.trim();
+  const confirm_password = form.confirm_password.value.trim();
+
+  if (new_password !== confirm_password) {
+    document.getElementById("passwordError").textContent = "Passwords do not match.";
+    return;
+  }
+
+  try {
+    const res = await api("/api/admin/change-password", {
+      method: "POST",
+      body: JSON.stringify({
+        current_password,
+        new_password
+      })
+    });
+
+    if (res.ok) {
+      document.getElementById("passwordSuccess").textContent =
+        "Password updated. Verification email sent to victor@arbor-aid.com.";
+    } else {
+      document.getElementById("passwordError").textContent = "Incorrect current password.";
+    }
+  } catch (err) {
+    document.getElementById("passwordError").textContent = "Error updating password.";
+  }
+}
+
+/* ============================================================
+   DASHBOARD PREVIEW LOADERS
+============================================================ */
+
+async function loadPreviewCustomers() {
+  try {
+    const customers = await api("/api/admin/customers");
+    const box = document.getElementById("previewCustomers");
+    if (!box) return;
+
+    box.innerHTML = "";
+    customers.slice(0, 5).forEach(c => {
+      const li = document.createElement("li");
+      li.textContent = `${c.name} — ${c.phone}`;
+      box.appendChild(li);
+    });
+  } catch (err) {}
+}
+
+async function loadPreviewJobs() {
+  try {
+    const jobs = await api("/api/admin/jobs?status=scheduled");
+    const box = document.getElementById("previewJobs");
+    if (!box) return;
+
+    box.innerHTML = "";
+    jobs.slice(0, 5).forEach(j => {
+      const li = document.createElement("li");
+      li.textContent = `${j.scheduled_date || "No date"} — ${j.title}`;
+      box.appendChild(li);
+    });
+  } catch (err) {}
+}
+
+async function loadPreviewReviews() {
+  try {
+    const reviews = await api("/api/reviews?limit=5");
+    const box = document.getElementById("previewReviews");
+    if (!box) return;
+
+    box.innerHTML = "";
+    reviews.forEach(r => {
+      const li = document.createElement("li");
+      li.textContent = `${r.title || "Review"} — ${r.rating}★`;
+      box.appendChild(li);
+    });
+  } catch (err) {}
+}
+
+async function loadPreviewCalendar() {
+  try {
+    const now = new Date().toISOString();
+    const events = await api(`/api/admin/calendar?from=${now}`);
+    const box = document.getElementById("previewCalendar");
+    if (!box) return;
+
+    box.innerHTML = "";
+    events.slice(0, 5).forEach(e => {
+      const li = document.createElement("li");
+      li.textContent = `${e.title} — ${e.start_datetime}`;
+      box.appendChild(li);
+    });
+  } catch (err) {}
+}
+
+/* ============================================================
+   ANALYTICS
+============================================================ */
 
 async function loadAdminAnalytics() {
   try {
     const data = await api("/api/admin/analytics");
-    document.getElementById("adminJobs").textContent = data.jobs || 0;
-    document.getElementById("adminRevenue").textContent = `$${data.revenue || 0}`;
-    document.getElementById("adminOpenContracts").textContent = data.openContracts || 0;
-  } catch (err) {
-    console.error(err);
-  }
+
+    if (document.getElementById("adminJobs"))
+      document.getElementById("adminJobs").textContent = data.jobs || 0;
+
+    if (document.getElementById("adminRevenue"))
+      document.getElementById("adminRevenue").textContent = `$${data.revenue || 0}`;
+
+    if (document.getElementById("adminOpenContracts"))
+      document.getElementById("adminOpenContracts").textContent = data.openContracts || 0;
+
+    if (document.getElementById("cardJobsTotal"))
+      document.getElementById("cardJobsTotal").textContent = data.jobs || 0;
+
+    if (document.getElementById("cardContractsOpen"))
+      document.getElementById("cardContractsOpen").textContent = data.openContracts || 0;
+
+  } catch (err) {}
 }
 
 async function loadSiteAnalytics() {
@@ -53,12 +202,19 @@ async function loadSiteAnalytics() {
       div.textContent = `${row.day}: ${row.views}`;
       box.appendChild(div);
     });
-  } catch (err) {
-    console.error(err);
-  }
+
+    if (document.getElementById("cardVisitsToday"))
+      document.getElementById("cardVisitsToday").textContent = data.perDay[0]?.views || 0;
+
+    if (document.getElementById("cardPageViews"))
+      document.getElementById("cardPageViews").textContent = data.totalViews || 0;
+
+  } catch (err) {}
 }
 
-// ========== CUSTOMERS ==========
+/* ============================================================
+   CUSTOMERS
+============================================================ */
 
 async function loadCustomers() {
   try {
@@ -69,14 +225,12 @@ async function loadCustomers() {
     list.innerHTML = "";
     customers.forEach(c => {
       const li = document.createElement("li");
-      li.textContent = `${c.name} — ${c.phone} — ${c.city || ""}`;
+      li.textContent = `${c.name} — ${c.phone}`;
       li.dataset.id = c.id;
       li.onclick = () => loadCustomerDetail(c.id);
       list.appendChild(li);
     });
-  } catch (err) {
-    console.error(err);
-  }
+  } catch (err) {}
 }
 
 async function loadCustomerDetail(id) {
@@ -91,9 +245,7 @@ async function loadCustomerDetail(id) {
       <p>${c.address || ""}</p>
       <p>${c.notes || ""}</p>
     `;
-  } catch (err) {
-    console.error(err);
-  }
+  } catch (err) {}
 }
 
 async function createCustomer(formId) {
@@ -106,14 +258,13 @@ async function createCustomer(formId) {
       method: "POST",
       body: JSON.stringify(data)
     });
-    alert("Customer saved.");
     loadCustomers();
-  } catch (err) {
-    alert("Error saving customer.");
-  }
+  } catch (err) {}
 }
 
-// ========== JOBS ==========
+/* ============================================================
+   JOBS
+============================================================ */
 
 async function loadJobs(status = "scheduled") {
   try {
@@ -124,14 +275,12 @@ async function loadJobs(status = "scheduled") {
     list.innerHTML = "";
     jobs.forEach(j => {
       const li = document.createElement("li");
-      li.textContent = `${j.scheduled_date || "No date"} — ${j.title} — ${j.customer_name || ""}`;
+      li.textContent = `${j.scheduled_date || "No date"} — ${j.title}`;
       li.dataset.id = j.id;
       li.onclick = () => loadJobDetail(j.id);
       list.appendChild(li);
     });
-  } catch (err) {
-    console.error(err);
-  }
+  } catch (err) {}
 }
 
 async function loadJobDetail(id) {
@@ -151,9 +300,7 @@ async function loadJobDetail(id) {
       <p>Final: $${j.final_price || 0}</p>
       <p>Notes: ${j.crew_notes || ""}</p>
     `;
-  } catch (err) {
-    console.error(err);
-  }
+  } catch (err) {}
 }
 
 async function createJob(formId) {
@@ -166,24 +313,19 @@ async function createJob(formId) {
       method: "POST",
       body: JSON.stringify(data)
     });
-    alert("Job created.");
     loadJobs("scheduled");
-  } catch (err) {
-    alert("Error creating job.");
-  }
+  } catch (err) {}
 }
 
-// ========== CONTRACTS ==========
+/* ============================================================
+   CONTRACTS
+============================================================ */
 
 async function sendContract(formId, endpoint) {
   const form = document.getElementById(formId);
   if (!form) return;
 
-  const submitBtn = form.querySelector("button[type='submit']");
-  if (submitBtn) submitBtn.disabled = true;
-
-  const formData = new FormData(form);
-  const payload = Object.fromEntries(formData.entries());
+  const payload = Object.fromEntries(new FormData(form).entries());
 
   try {
     const res = await api(endpoint, {
@@ -191,16 +333,10 @@ async function sendContract(formId, endpoint) {
       body: JSON.stringify(payload)
     });
 
-    alert("Contract created.");
     if (res.signatureToken) {
-      const link = `https://arbor-aid.com/sign/contract/${res.signatureToken}`;
-      console.log("Signing link:", link);
+      console.log("Signing link:", `https://arbor-aid.com/sign/contract/${res.signatureToken}`);
     }
-  } catch (err) {
-    alert("There was an issue creating the contract.");
-  } finally {
-    if (submitBtn) submitBtn.disabled = false;
-  }
+  } catch (err) {}
 }
 
 async function sendExistingContract(id) {
@@ -208,40 +344,26 @@ async function sendExistingContract(id) {
     const res = await api(`/api/admin/contracts/${id}/send`, {
       method: "POST"
     });
-    alert("Contract sent.");
     console.log("Sign URL:", res.signUrl);
-  } catch (err) {
-    alert("Error sending contract.");
-  }
+  } catch (err) {}
 }
 
-// ========== INVOICES ==========
+/* ============================================================
+   INVOICES
+============================================================ */
 
 async function sendInvoice(formId, endpoint) {
   const form = document.getElementById(formId);
   if (!form) return;
 
-  const submitBtn = form.querySelector("button[type='submit']");
-  if (submitBtn) submitBtn.disabled = true;
-
-  const formData = new FormData(form);
-  const payload = Object.fromEntries(formData.entries());
+  const payload = Object.fromEntries(new FormData(form).entries());
 
   try {
     const res = await api(endpoint, {
       method: "POST",
       body: JSON.stringify(payload)
     });
-
-    alert("Invoice created.");
-    if (res.id) {
-      console.log("Invoice ID:", res.id);
-    }
-  } catch (err) {
-    alert("There was an issue creating the invoice.");
-  } finally {
-    if (submitBtn) submitBtn.disabled = false;
-  }
+  } catch (err) {}
 }
 
 async function sendExistingInvoice(id) {
@@ -249,11 +371,7 @@ async function sendExistingInvoice(id) {
     const res = await api(`/api/admin/invoices/${id}/send`, {
       method: "POST"
     });
-    alert("Invoice sent.");
-    console.log("Invoice PDF:", res.pdfUrl);
-  } catch (err) {
-    alert("Error sending invoice.");
-  }
+  } catch (err) {}
 }
 
 async function markInvoicePaid(id) {
@@ -261,13 +379,12 @@ async function markInvoicePaid(id) {
     await api(`/api/admin/invoices/${id}/mark-paid`, {
       method: "POST"
     });
-    alert("Invoice marked as paid.");
-  } catch (err) {
-    alert("Error marking invoice paid.");
-  }
+  } catch (err) {}
 }
 
-// ========== CALENDAR ==========
+/* ============================================================
+   CALENDAR
+============================================================ */
 
 async function loadCalendar(from, to) {
   try {
@@ -288,9 +405,7 @@ async function loadCalendar(from, to) {
       `;
       box.appendChild(div);
     });
-  } catch (err) {
-    console.error(err);
-  }
+  } catch (err) {}
 }
 
 async function createCalendarEvent(formId) {
@@ -303,13 +418,12 @@ async function createCalendarEvent(formId) {
       method: "POST",
       body: JSON.stringify(data)
     });
-    alert("Event created.");
-  } catch (err) {
-    alert("Error creating event.");
-  }
+  } catch (err) {}
 }
 
-// ========== REVIEWS TEST (ADMIN) ==========
+/* ============================================================
+   REVIEWS
+============================================================ */
 
 async function loadAdminReviews() {
   try {
@@ -328,30 +442,24 @@ async function loadAdminReviews() {
       `;
       box.appendChild(div);
     });
-  } catch (err) {
-    console.error(err);
-  }
+  } catch (err) {}
 }
 
-// ========== WEATHER TEST ==========
-
-async function testWeather() {
-  try {
-    const data = await api("/api/weather?city=Atlanta");
-    const el = document.getElementById("weatherTestResult");
-    if (!el) return;
-    el.textContent = `Weather: ${data.description} — ${data.temp}°F`;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-// ========== INIT ==========
+/* ============================================================
+   INIT
+============================================================ */
 
 window.addEventListener("load", () => {
-  // Load initial analytics & jobs
+  requireAdminLogin();
+
   loadAdminAnalytics();
   loadSiteAnalytics();
+
+  loadPreviewCustomers();
+  loadPreviewJobs();
+  loadPreviewReviews();
+  loadPreviewCalendar();
+
   loadJobs("scheduled");
   loadCustomers();
 });
