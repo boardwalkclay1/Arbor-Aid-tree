@@ -12,7 +12,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: #111;
+  color: #fff;
   opacity: 0;
   transition: opacity 0.8s ease;
 }
@@ -35,6 +35,34 @@ body.page-loaded {
 .bg-about { background-image: url('/img/arbor-index.jpg'); }
 .bg-contact { background-image: url('/img/arbor-index.jpg'); }
 .bg-estimate { background-image: url('/img/arbor-index.jpg'); }
+
+/* ============================
+   TRANSPARENT BLOCKS FOR TEXT
+============================ */
+.block-red {
+  background: rgba(255, 0, 0, 0.65);
+  padding: 12px 18px;
+  border-radius: 10px;
+  display: inline-block;
+  box-shadow: 0 0 10px black;
+}
+
+.block-green {
+  background: rgba(0, 128, 0, 0.65);
+  padding: 12px 18px;
+  border-radius: 10px;
+  display: inline-block;
+  box-shadow: 0 0 10px black;
+}
+
+.block-white {
+  background: rgba(255, 255, 255, 0.65);
+  padding: 12px 18px;
+  border-radius: 10px;
+  display: inline-block;
+  color: black;
+  box-shadow: 0 0 10px black;
+}
 
 /* ============================
    HEADER
@@ -68,6 +96,7 @@ body.page-loaded {
   font-weight: bold;
   color: red;
   letter-spacing: 1px;
+  text-shadow: 0 0 6px black;
 }
 
 /* ============================
@@ -84,33 +113,24 @@ body.page-loaded {
   font-weight: bold;
   padding: 6px 10px;
   transition: 0.3s;
+  background: rgba(0,0,0,0.4);
+  border-radius: 6px;
 }
 
 .nav-links a:hover {
-  color: green;
+  background: rgba(255,0,0,0.6);
   transform: translateY(-2px);
 }
 
 .nav-links a.active {
-  color: green;
-}
-
-.contact-btn {
-  background: red;
-  padding: 8px 14px;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.contact-btn:hover {
-  background: #ff4d5a;
+  background: rgba(0,128,0,0.6);
 }
 
 /* ============================
    CONTACT INFO
 ============================ */
 .contact-info a {
-  color: green;
+  color: #4CAF50;
   font-weight: bold;
   margin-left: 14px;
   text-shadow: 0 0 4px black;
@@ -126,22 +146,33 @@ body.page-loaded {
   text-shadow: 0 0 10px black;
 }
 
-.hero h1 {
+.hero h1,
+.page-hero h1 {
   font-size: 48px;
   margin-bottom: 20px;
+  display: inline-block;
+  background: rgba(255,0,0,0.65);
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
 }
 
-.hero p {
+.hero p,
+.page-hero p {
   font-size: 20px;
   max-width: 700px;
   margin: 0 auto;
+  background: rgba(0,128,0,0.65);
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
 }
 
 /* ============================
    CTA BUTTONS
 ============================ */
 .cta-btn {
-  background: red;
+  background: rgba(255,0,0,0.85);
   padding: 14px 24px;
   border-radius: 10px;
   color: white;
@@ -154,16 +185,16 @@ body.page-loaded {
 }
 
 .cta-btn:hover {
-  background: #ff4d5a;
+  background: rgba(255,0,0,1);
   transform: translateY(-3px);
 }
 
 .cta-btn.secondary {
-  background: green;
+  background: rgba(0,128,0,0.85);
 }
 
 .cta-btn.secondary:hover {
-  background: #5ecf63;
+  background: rgba(0,128,0,1);
 }
 
 /* ============================
@@ -214,35 +245,38 @@ body.page-loaded {
    TESTIMONIALS
 ============================ */
 .testimonial-list article {
-  background: white;
+  background: rgba(255,255,255,0.85);
   padding: 24px;
   margin-bottom: 24px;
   border-left: 6px solid green;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0,0,0,0.3);
+  color: black;
 }
 
 /* ============================
    FAQ
 ============================ */
 .faq-list article {
-  background: white;
+  background: rgba(255,255,255,0.85);
   padding: 24px;
   margin-bottom: 24px;
   border-left: 6px solid red;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0,0,0,0.3);
+  color: black;
 }
 
 /* ============================
    FORMS
 ============================ */
 form {
-  background: white;
+  background: rgba(255,255,255,0.85);
   padding: 24px;
   margin: 40px;
   border-radius: 12px;
   box-shadow: 0 0 14px rgba(0,0,0,0.3);
+  color: black;
 }
 
 form input, form textarea, form select {
