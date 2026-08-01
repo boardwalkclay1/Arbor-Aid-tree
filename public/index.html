@@ -25,22 +25,19 @@
 <body class="bg-home">
 
 <!-- ============================
-     HEADER
+     HEADER (NO BACKGROUND)
 ============================ -->
-<header class="main-header">
+<header class="main-header no-bg-header">
 
-  <!-- LOGO + MENU BUTTON -->
   <div class="logo-menu" onclick="toggleMenu()">
     <img src="/img/arbor-aid-logo.jpg" alt="Arbor Aid Logo">
     <span class="brand-name header-font">ARBOR AID TREE SERVICE</span>
   </div>
 
-  <!-- TOP NAV: ONLY HOME -->
   <nav class="top-nav">
     <a href="/index.html" class="btn-link link-font active">Home</a>
   </nav>
 
-  <!-- CONTACT INFO -->
   <div class="contact-info">
     <a href="tel:+14045673819" class="btn-link link-font phone">📞 (404) 567‑3819</a>
     <a href="mailto:victor@arbor-aid.com" class="btn-link link-font email">✉️ victor@arbor-aid.com</a>
@@ -52,7 +49,6 @@
 ============================ -->
 <div id="sideMenu" class="side-menu">
   <div class="side-menu-inner">
-
     <a href="/pages/services.html" class="btn-link link-font">Services</a>
     <a href="/pages/gallery.html" class="btn-link link-font">Gallery</a>
     <a href="/pages/testimonials.html" class="btn-link link-font">Testimonials</a>
@@ -67,7 +63,6 @@
     <hr>
 
     <a href="/admin/index.html" class="btn-link link-font admin-link">Owner Login (Victor)</a>
-
   </div>
 </div>
 
@@ -75,17 +70,52 @@
      HERO
 ============================ -->
 <section class="hero">
-  <div class="hero-top-row">
-    <div class="hero-main">
-      <h1 class="header-font">Professional Tree Care You Can Trust</h1>
-      <p>Safe, fast, and affordable tree services for Atlanta and surrounding areas.</p>
+  <div class="hero-main">
+    <h1 class="header-font">Professional Tree Care You Can Trust</h1>
+    <p>Safe, fast, and affordable tree services for Atlanta and surrounding areas.</p>
 
-      <div class="hero-cta-row">
-        <a href="/pages/estimate.html" class="btn-link link-font cta-btn">Get a Free Estimate</a>
-        <a href="/pages/emergency.html" class="btn-link link-font cta-btn secondary">Emergency Service</a>
-      </div>
+    <div class="hero-cta-row">
+      <a href="/pages/estimate.html" class="btn-link link-font cta-btn">Get a Free Estimate</a>
+      <a href="/pages/emergency.html" class="btn-link link-font cta-btn secondary">Emergency Service</a>
     </div>
   </div>
+</section>
+
+<!-- ============================
+     BEFORE & AFTER — TREE REMOVAL
+============================ -->
+<section class="before-after">
+  <h2 class="header-font">Tree Removal — Before & After</h2>
+
+  <div class="before-after-row">
+    <div class="before-after-card">
+      <img src="/img/arbor-before-after.jpg" alt="Tree Removal Before">
+      <p>Large hazardous tree removed safely from tight residential space.</p>
+    </div>
+
+    <div class="before-after-card">
+      <img src="/img/arbor-before-after2.jpg" alt="Tree Removal After">
+      <p>Clean, debris‑free finish with full haul‑away included.</p>
+    </div>
+  </div>
+
+  <a href="/pages/services.html#removal" class="btn-link link-font red-bubble">Tree Removal Details</a>
+</section>
+
+<!-- ============================
+     BEFORE & AFTER — STUMP REMOVAL
+============================ -->
+<section class="before-after">
+  <h2 class="header-font">Stump Removal — Before & After</h2>
+
+  <div class="before-after-row">
+    <div class="before-after-card">
+      <img src="/img/arbor-stump-before-after.jpg" alt="Stump Removal Before and After">
+      <p>Old stump ground below grade and restored for clean landscaping.</p>
+    </div>
+  </div>
+
+  <a href="/pages/services.html#stumps" class="btn-link link-font red-bubble">Stump Grinding Details</a>
 </section>
 
 <!-- ============================
@@ -108,25 +138,25 @@
     <div class="service-card">
       <h3 class="header-font">Tree Removal</h3>
       <p>Safe removals near homes, fences, and power lines.</p>
-      <a href="/pages/services.html#removal" class="btn-link link-font cta-link">Learn more</a>
+      <a href="/pages/services.html#removal" class="btn-link link-font red-bubble">Learn more</a>
     </div>
 
     <div class="service-card">
       <h3 class="header-font">Tree Trimming</h3>
       <p>Healthy shaping to protect your property and improve growth.</p>
-      <a href="/pages/services.html#trimming" class="btn-link link-font cta-link">Learn more</a>
+      <a href="/pages/services.html#trimming" class="btn-link link-font red-bubble">Learn more</a>
     </div>
 
     <div class="service-card">
       <h3 class="header-font">Stump Grinding</h3>
       <p>Clean stump removal to restore your yard.</p>
-      <a href="/pages/services.html#stumps" class="btn-link link-font cta-link">Learn more</a>
+      <a href="/pages/services.html#stumps" class="btn-link link-font red-bubble">Learn more</a>
     </div>
 
     <div class="service-card">
       <h3 class="header-font">Storm Cleanup</h3>
       <p>Fast response when fallen trees threaten your home.</p>
-      <a href="/pages/emergency.html" class="btn-link link-font cta-link">Emergency details</a>
+      <a href="/pages/emergency.html" class="btn-link link-font red-bubble">Emergency details</a>
     </div>
   </div>
 </section>
@@ -136,15 +166,9 @@
 ============================ -->
 <section class="owner-intro">
   <h2 class="header-font">Meet the Owner — Victor Robinson</h2>
-  <p>
-    Arbor Aid Tree Service is owned and operated by <strong>Victor Robinson</strong>,
-    serving Atlanta with honest, professional tree care.
-  </p>
-  <p>
-    Victor personally oversees complex removals, storm damage work, and large
-    commercial projects, backed by full insurance and documented reports.
-  </p>
-  <a href="/pages/about.html" class="btn-link link-font cta-link">More about Victor</a>
+  <p>Arbor Aid Tree Service is owned and operated by <strong>Victor Robinson</strong>, serving Atlanta with honest, professional tree care.</p>
+  <p>Victor personally oversees complex removals, storm damage work, and large commercial projects.</p>
+  <a href="/pages/about.html" class="btn-link link-font red-bubble">More about Victor</a>
 </section>
 
 <!-- ============================
@@ -157,7 +181,7 @@
     <img src="/img/gallery-after-1.jpg" alt="Tree removal after">
     <img src="/img/gallery-trim-1.jpg" alt="Tree trimming">
   </div>
-  <a href="/pages/gallery.html" class="btn-link link-font cta-link">View Full Gallery</a>
+  <a href="/pages/gallery.html" class="btn-link link-font red-bubble">View Full Gallery</a>
 </section>
 
 <!-- ============================
@@ -166,7 +190,7 @@
 <section class="home-testimonials">
   <h2 class="header-font">What Customers Say</h2>
   <div class="testimonial-snippets" id="homeTestimonials"></div>
-  <a href="/pages/testimonials.html" class="btn-link link-font cta-link">Read all reviews</a>
+  <a href="/pages/testimonials.html" class="btn-link link-font red-bubble">Read all reviews</a>
 </section>
 
 <!-- ============================
@@ -175,10 +199,10 @@
 <section class="home-faq">
   <h2 class="header-font">Quick Answers</h2>
   <ul>
-    <li><a href="/pages/faq.html#insured" class="btn-link link-font">Are you insured?</a></li>
-    <li><a href="/pages/faq.html#debris" class="btn-link link-font">Do you haul away debris?</a></li>
-    <li><a href="/pages/faq.html#emergency" class="btn-link link-font">Do you offer emergency service?</a></li>
-    <li><a href="/pages/faq.html#estimate" class="btn-link link-font">Are estimates free?</a></li>
+    <li><a href="/pages/faq.html#insured" class="btn-link link-font red-bubble">Are you insured?</a></li>
+    <li><a href="/pages/faq.html#debris" class="btn-link link-font red-bubble">Do you haul away debris?</a></li>
+    <li><a href="/pages/faq.html#emergency" class="btn-link link-font red-bubble">Do you offer emergency service?</a></li>
+    <li><a href="/pages/faq.html#estimate" class="btn-link link-font red-bubble">Are estimates free?</a></li>
   </ul>
 </section>
 
@@ -188,7 +212,7 @@
 <section class="home-service-areas">
   <h2 class="header-font">Service Areas</h2>
   <p>We proudly serve Atlanta, Decatur, East Point, College Park, Marietta, Smyrna, and more.</p>
-  <a href="/pages/service-areas.html" class="btn-link link-font cta-link">View full service map</a>
+  <a href="/pages/service-areas.html" class="btn-link link-font red-bubble">View full service map</a>
 </section>
 
 <!-- ============================
@@ -211,7 +235,7 @@
 <footer class="footer">
   <p>© 2026 Arbor Aid Tree Service — Owner: Victor Robinson</p>
   <p>Serving Atlanta and surrounding areas</p>
-  <p><a href="/admin/index.html" class="btn-link link-font admin-link">Owner Login (Victor)</a></p>
+  <p><a href="/admin/index.html" class="btn-link link-font red-bubble">Owner Login (Victor)</a></p>
 </footer>
 
 <!-- Floating Contact Button -->
