@@ -15,8 +15,26 @@ body {
 .admin-nav a,
 button {
   font-family: 'Rubik Wet Paint', cursive;
-  font-size: 1.5em; /* 1.5× larger so letters don’t melt together */
+  font-size: 1.5em; /* Prevent melting */
   letter-spacing: 1px;
+}
+
+/* ============================
+   LOGO NAV
+============================ */
+.admin-logo-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.admin-logo {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 /* ============================
@@ -72,6 +90,52 @@ button {
 
 .hidden {
   display: none;
+}
+
+/* ============================
+   CARDS
+============================ */
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.admin-card {
+  background: rgba(255,255,255,0.08);
+  padding: 20px;
+  width: 260px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px black;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.admin-card:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-3px);
+}
+
+.admin-card h3 {
+  margin-top: 0;
+}
+
+/* ============================
+   PREVIEW LISTS
+============================ */
+.preview-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.preview-list li {
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  font-size: 0.9em;
 }
 
 /* ============================
@@ -171,4 +235,23 @@ button:hover {
   padding: 14px;
   background: rgba(255,255,255,0.1);
   border-radius: 10px;
+}
+
+/* ============================
+   ERROR / SUCCESS TEXT
+============================ */
+.error-text {
+  color: #ff4d4d;
+  margin-top: 10px;
+}
+
+.success-text {
+  color: #4dff4d;
+  margin-top: 10px;
+}
+
+.dev-note {
+  margin-top: 20px;
+  font-size: 0.9em;
+  opacity: 0.7;
 }
