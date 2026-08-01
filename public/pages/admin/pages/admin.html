@@ -5,82 +5,36 @@
   <title>Arbor Aid Admin Panel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="/css/global.css">
+  <!-- Admin Stylesheet -->
+  <link rel="stylesheet" href="/pages/admin/css/admin.css">
+
+  <!-- Admin JS -->
   <script src="/pages/admin/js/admin.js" defer></script>
-
-  <style>
-    body {
-      background: #111;
-      color: #fff;
-      padding: 20px;
-      font-family: 'Rubik Wet Paint', cursive;
-    }
-
-    h1, h2 {
-      margin-bottom: 10px;
-      text-shadow: 0 0 8px black;
-    }
-
-    .admin-section {
-      background: rgba(0,0,0,0.75);
-      padding: 20px;
-      margin-bottom: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px black;
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-      font-size: 16px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border-radius: 8px;
-      border: none;
-      background: #222;
-      color: #fff;
-    }
-
-    button {
-      margin-top: 14px;
-      padding: 12px 20px;
-      background: red;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 0 0 10px black;
-    }
-
-    button:hover {
-      background: #ff4d4d;
-    }
-
-    .analytics-box {
-      background: rgba(0,0,0,0.65);
-      padding: 14px;
-      border-radius: 10px;
-      margin-top: 10px;
-    }
-  </style>
 </head>
 
-<body class="bg-home">
+<body>
 
-<h1>Arbor Aid Admin Dashboard</h1>
+<header class="admin-header">
+  <h1>Arbor Aid Admin Dashboard</h1>
+  <nav class="admin-nav">
+    <button onclick="showSection('analytics')">Analytics</button>
+    <button onclick="showSection('customers')">Customers</button>
+    <button onclick="showSection('jobs')">Jobs</button>
+    <button onclick="showSection('contracts')">Contracts</button>
+    <button onclick="showSection('invoices')">Invoices</button>
+    <button onclick="showSection('calendar')">Calendar</button>
+    <button onclick="showSection('reviews')">Reviews</button>
+  </nav>
+</header>
 
-<!-- ============================
-     ANALYTICS
-============================ -->
-<div class="admin-section">
-  <h2>Business Analytics</h2>
+<main>
 
-  <div id="adminAnalytics">
+  <!-- ============================
+       ANALYTICS
+  ============================= -->
+  <section id="analytics" class="admin-section">
+    <h2>Business Analytics</h2>
+
     <div class="analytics-box">
       <strong>Total Jobs:</strong> <span id="adminJobs">—</span>
     </div>
@@ -92,141 +46,187 @@
     <div class="analytics-box">
       <strong>Open Contracts:</strong> <span id="adminOpenContracts">—</span>
     </div>
-  </div>
 
-  <button onclick="loadAdminAnalytics()">Refresh Analytics</button>
-</div>
+    <button onclick="loadAdminAnalytics()">Refresh Analytics</button>
 
-<!-- ============================
-     CONTRACT CREATOR
-============================ -->
-<div class="admin-section">
-  <h2>Create Contract</h2>
+    <h3>Site Analytics</h3>
+    <div id="siteAnalytics"></div>
+  </section>
 
-  <form id="contractForm">
-    <label>Customer Name</label>
-    <input name="customer_name" required>
+  <!-- ============================
+       CUSTOMERS
+  ============================= -->
+  <section id="customers" class="admin-section hidden">
+    <h2>Customers</h2>
 
-    <label>Customer Email</label>
-    <input name="customer_email">
+    <form id="customerForm" class="admin-form">
+      <label>Name</label>
+      <input name="name" required>
 
-    <label>Customer Phone</label>
-    <input name="customer_phone">
+      <label>Phone</label>
+      <input name="phone">
 
-    <label>Address</label>
-    <input name="address">
+      <label>Email</label>
+      <input name="email">
 
-    <label>Service</label>
-    <input name="service">
+      <label>Address</label>
+      <input name="address">
 
-    <label>Price</label>
-    <input name="price">
+      <label>Notes</label>
+      <textarea name="notes"></textarea>
 
-    <label>Terms</label>
-    <textarea name="terms"></textarea>
+      <button type="button" onclick="createCustomer('customerForm')">Save Customer</button>
+    </form>
 
-    <button type="submit">Create Contract</button>
-  </form>
+    <h3>Customer List</h3>
+    <ul id="customerList" class="admin-list"></ul>
 
-  <script>
-    document.getElementById("contractForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      await sendContract("contractForm", "/api/admin/contract");
-    });
-  </script>
-</div>
+    <div id="customerDetail" class="detail-box"></div>
+  </section>
 
-<!-- ============================
-     INVOICE CREATOR
-============================ -->
-<div class="admin-section">
-  <h2>Create Invoice</h2>
+  <!-- ============================
+       JOBS
+  ============================= -->
+  <section id="jobs" class="admin-section hidden">
+    <h2>Jobs</h2>
 
-  <form id="invoiceForm">
-    <label>Customer Name</label>
-    <input name="customer_name" required>
+    <form id="jobForm" class="admin-form">
+      <label>Customer ID</label>
+      <input name="customer_id" required>
 
-    <label>Customer Email</label>
-    <input name="customer_email">
+      <label>Title</label>
+      <input name="title" required>
 
-    <label>Customer Phone</label>
-    <input name="customer_phone">
+      <label>Description</label>
+      <textarea name="description"></textarea>
 
-    <label>Address</label>
-    <input name="address">
+      <label>Scheduled Date</label>
+      <input type="datetime-local" name="scheduled_date">
 
-    <label>Service</label>
-    <input name="service">
+      <label>Arrival Window</label>
+      <input name="arrival_window">
 
-    <label>Price</label>
-    <input name="price">
+      <label>Price Estimate</label>
+      <input name="price_estimate">
 
-    <label>Due Date</label>
-    <input name="due_date" type="date">
+      <label>Crew Notes</label>
+      <textarea name="crew_notes"></textarea>
 
-    <button type="submit">Create Invoice</button>
-  </form>
+      <button type="button" onclick="createJob('jobForm')">Create Job</button>
+    </form>
 
-  <script>
-    document.getElementById("invoiceForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      await sendContract("invoiceForm", "/api/admin/invoice");
-    });
-  </script>
-</div>
+    <h3>Scheduled Jobs</h3>
+    <ul id="jobList" class="admin-list"></ul>
 
-<!-- ============================
-     WEATHER TEST
-============================ -->
-<div class="admin-section">
-  <h2>Weather API Test</h2>
-  <button onclick="testWeather()">Load Weather</button>
-  <p id="weatherTestResult"></p>
+    <div id="jobDetail" class="detail-box"></div>
+  </section>
 
-  <script>
-    async function testWeather() {
-      const res = await fetch("/api/weather?city=Atlanta");
-      const data = await res.json();
-      document.getElementById("weatherTestResult").textContent =
-        `Weather: ${data.description} — ${data.temp}°F`;
-    }
-  </script>
-</div>
+  <!-- ============================
+       CONTRACTS
+  ============================= -->
+  <section id="contracts" class="admin-section hidden">
+    <h2>Create Contract</h2>
 
-<!-- ============================
-     REVIEWS TEST
-============================ -->
-<div class="admin-section">
-  <h2>Latest Reviews</h2>
-  <button onclick="loadAdminReviews()">Load Reviews</button>
-  <div id="adminReviews"></div>
+    <form id="contractForm" class="admin-form">
+      <label>Customer ID</label>
+      <input name="customer_id" required>
 
-  <script>
-    async function loadAdminReviews() {
-      const res = await fetch("/api/reviews?limit=5");
-      const reviews = await res.json();
+      <label>Job ID (optional)</label>
+      <input name="job_id">
 
-      const box = document.getElementById("adminReviews");
-      box.innerHTML = "";
+      <label>Service Description</label>
+      <textarea name="service_description"></textarea>
 
-      reviews.forEach(r => {
-        const div = document.createElement("div");
-        div.className = "analytics-box";
-        div.innerHTML = `
-          <strong>${r.title || "Review"}</strong><br>
-          ${r.text}<br>
-          <em>${r.name || "Customer"} — ${r.city || "Atlanta"}</em>
-        `;
-        box.appendChild(div);
-      });
-    }
-  </script>
-</div>
+      <label>Price</label>
+      <input name="price">
 
-<!-- ============================
-     FALLING LEAVES
-============================ -->
-<div id="leaf-container"></div>
+      <label>Terms</label>
+      <textarea name="terms"></textarea>
+
+      <button type="button" onclick="sendContract('contractForm', '/api/admin/contracts')">Create Contract</button>
+    </form>
+
+    <h3>Send Existing Contract</h3>
+    <input id="sendContractId" placeholder="Contract ID">
+    <button onclick="sendExistingContract(document.getElementById('sendContractId').value)">Send Contract</button>
+  </section>
+
+  <!-- ============================
+       INVOICES
+  ============================= -->
+  <section id="invoices" class="admin-section hidden">
+    <h2>Create Invoice</h2>
+
+    <form id="invoiceForm" class="admin-form">
+      <label>Customer ID</label>
+      <input name="customer_id" required>
+
+      <label>Job ID</label>
+      <input name="job_id">
+
+      <label>Amount</label>
+      <input name="amount">
+
+      <label>Due Date</label>
+      <input type="date" name="due_date">
+
+      <label>Notes</label>
+      <textarea name="notes"></textarea>
+
+      <button type="button" onclick="sendInvoice('invoiceForm', '/api/admin/invoices')">Create Invoice</button>
+    </form>
+
+    <h3>Send Existing Invoice</h3>
+    <input id="sendInvoiceId" placeholder="Invoice ID">
+    <button onclick="sendExistingInvoice(document.getElementById('sendInvoiceId').value)">Send Invoice</button>
+
+    <h3>Mark Invoice Paid</h3>
+    <input id="paidInvoiceId" placeholder="Invoice ID">
+    <button onclick="markInvoicePaid(document.getElementById('paidInvoiceId').value)">Mark Paid</button>
+  </section>
+
+  <!-- ============================
+       CALENDAR
+  ============================= -->
+  <section id="calendar" class="admin-section hidden">
+    <h2>Calendar</h2>
+
+    <form id="calendarForm" class="admin-form">
+      <label>Job ID</label>
+      <input name="job_id">
+
+      <label>Title</label>
+      <input name="title" required>
+
+      <label>Start Date/Time</label>
+      <input type="datetime-local" name="start_datetime" required>
+
+      <label>End Date/Time</label>
+      <input type="datetime-local" name="end_datetime">
+
+      <label>Crew Assigned</label>
+      <input name="crew_assigned">
+
+      <label>Notes</label>
+      <textarea name="notes"></textarea>
+
+      <button type="button" onclick="createCalendarEvent('calendarForm')">Create Event</button>
+    </form>
+
+    <h3>Upcoming Events</h3>
+    <div id="calendarEvents"></div>
+  </section>
+
+  <!-- ============================
+       REVIEWS
+  ============================= -->
+  <section id="reviews" class="admin-section hidden">
+    <h2>Latest Reviews</h2>
+    <button onclick="loadAdminReviews()">Load Reviews</button>
+    <div id="adminReviews"></div>
+  </section>
+
+</main>
 
 </body>
 </html>
