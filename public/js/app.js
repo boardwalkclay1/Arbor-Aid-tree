@@ -1,10 +1,40 @@
-// Basic menu toggle
+/* =========================
+   SLIDE-OUT MENU (NEW)
+========================= */
+
 function toggleMenu() {
-  const nav = document.getElementById("mainNav");
-  if (nav) nav.classList.toggle("open");
+  const menu = document.getElementById("sideMenu");
+  if (menu) menu.classList.toggle("open");
 }
 
-// Falling leaves animation (UPDATED)
+// Close menu when clicking outside
+document.addEventListener("click", (e) => {
+  const menu = document.getElementById("sideMenu");
+  const logo = document.querySelector(".logo-menu");
+
+  if (!menu || !logo) return;
+
+  const clickedInsideMenu = menu.contains(e.target);
+  const clickedLogo = logo.contains(e.target);
+
+  if (!clickedInsideMenu && !clickedLogo) {
+    menu.classList.remove("open");
+  }
+});
+
+// Close menu with ESC key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const menu = document.getElementById("sideMenu");
+    if (menu) menu.classList.remove("open");
+  }
+});
+
+
+/* =========================
+   FALLING LEAVES
+========================= */
+
 const leafContainer = document.getElementById("leaf-container");
 
 function createLeaf() {
@@ -13,30 +43,35 @@ function createLeaf() {
   const leaf = document.createElement("div");
   leaf.classList.add("leaf");
 
-  // random horizontal position
   leaf.style.left = Math.random() * 100 + "vw";
-
-  // random fall speed
   leaf.style.animationDuration = (Math.random() * 3 + 3) + "s";
 
   leafContainer.appendChild(leaf);
 
-  // remove leaf after animation
   setTimeout(() => leaf.remove(), 6000);
 }
 
-// faster, smoother, constant falling leaves
 setInterval(createLeaf, 300);
 
-// Fade-in on load + initial data fetch
+
+/* =========================
+   PAGE LOAD
+========================= */
+
 window.addEventListener("load", () => {
   document.body.classList.add("page-loaded");
+
+  // Only run homepage functions if elements exist
   loadHomeReviews();
   loadHomeStats();
   loadWeather();
 });
 
-// Load review snippets for homepage
+
+/* =========================
+   HOMEPAGE REVIEWS
+========================= */
+
 async function loadHomeReviews() {
   const container = document.getElementById("homeTestimonials");
   if (!container) return;
@@ -44,9 +79,10 @@ async function loadHomeReviews() {
   try {
     const res = await fetch("/api/reviews?limit=3");
     if (!res.ok) throw new Error("Failed to load reviews");
-    const reviews = await res.json();
 
+    const reviews = await res.json();
     container.innerHTML = "";
+
     reviews.forEach(r => {
       const article = document.createElement("article");
       article.className = "testimonial-snippet";
@@ -57,51 +93,67 @@ async function loadHomeReviews() {
       `;
       container.appendChild(article);
     });
+
   } catch (err) {
     container.innerHTML = "<p>Reviews will appear here soon.</p>";
   }
 }
 
-// Load simple stats (jobs, 5★ reviews)
+
+/* =========================
+   HOMEPAGE STATS
+========================= */
+
 async function loadHomeStats() {
   const jobsEl = document.getElementById("statJobs");
   const reviewsEl = document.getElementById("statReviews");
+
   if (!jobsEl || !reviewsEl) return;
 
   try {
     const res = await fetch("/api/stats");
     if (!res.ok) throw new Error("Failed to load stats");
+
     const stats = await res.json();
 
     jobsEl.textContent = `Jobs completed this month: ${stats.jobsThisMonth || 0}`;
     reviewsEl.textContent = `5★ reviews: ${stats.fiveStarCount || 0}`;
+
   } catch (err) {
     jobsEl.textContent = "Jobs completed this month: —";
     reviewsEl.textContent = "5★ reviews: —";
   }
 }
 
-// Load weather for Atlanta
+
+/* =========================
+   WEATHER
+========================= */
+
 async function loadWeather() {
   const summaryEl = document.getElementById("weatherSummary");
   const tempEl = document.getElementById("weatherTemp");
+
   if (!summaryEl || !tempEl) return;
 
   try {
     const res = await fetch("/api/weather?city=Atlanta");
     if (!res.ok) throw new Error("Failed to load weather");
+
     const data = await res.json();
 
     summaryEl.textContent = data.description || "Weather data unavailable";
     tempEl.textContent = data.temp ? `${data.temp}°F` : "";
+
   } catch (err) {
     summaryEl.textContent = "Weather data unavailable";
     tempEl.textContent = "";
   }
 }
 
+
 /* =========================
-   ADMIN PAGE HOOKS (Victor)
+   ADMIN FUNCTIONS
 ========================= */
 
 // Create contract/invoice payload and send to Worker
@@ -121,22 +173,27 @@ async function sendContract(formId, endpoint) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
+
     if (!res.ok) throw new Error("Failed to send contract");
+
     const result = await res.json();
 
     alert("Contract created and emailed.");
+
     if (result.pdfUrl) {
       const link = document.createElement("a");
       link.href = result.pdfUrl;
       link.download = result.fileName || "contract.pdf";
       link.click();
     }
+
   } catch (err) {
     alert("There was an issue creating the contract. Please try again.");
   } finally {
     if (submitBtn) submitBtn.disabled = false;
   }
 }
+
 
 // Load admin analytics
 async function loadAdminAnalytics() {
@@ -146,11 +203,13 @@ async function loadAdminAnalytics() {
   try {
     const res = await fetch("/api/admin/analytics");
     if (!res.ok) throw new Error("Failed to load analytics");
+
     const data = await res.json();
 
     panel.querySelector("#adminJobs").textContent = data.jobs || 0;
     panel.querySelector("#adminRevenue").textContent = `$${data.revenue || 0}`;
     panel.querySelector("#adminOpenContracts").textContent = data.openContracts || 0;
+
   } catch (err) {
     panel.innerHTML = "<p>Analytics unavailable.</p>";
   }
