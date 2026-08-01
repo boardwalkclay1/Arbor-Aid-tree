@@ -1,0 +1,227 @@
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #111;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+body.page-loaded {
+  opacity: 1;
+}
+
+/* BACKGROUND CLASSES — EDIT THESE IMAGES */
+.bg-home { background-image: url('/img/bg-home.jpg'); }
+.bg-services { background-image: url('/img/bg-services.jpg'); }
+.bg-gallery { background-image: url('/img/bg-gallery.jpg'); }
+.bg-testimonials { background-image: url('/img/bg-testimonials.jpg'); }
+.bg-areas { background-image: url('/img/bg-areas.jpg'); }
+.bg-faq { background-image: url('/img/bg-faq.jpg'); }
+.bg-emergency { background-image: url('/img/bg-emergency.jpg'); }
+.bg-insurance { background-image: url('/img/bg-insurance.jpg'); }
+.bg-about { background-image: url('/img/bg-about.jpg'); }
+.bg-contact { background-image: url('/img/bg-contact.jpg'); }
+.bg-estimate { background-image: url('/img/bg-estimate.jpg'); }
+
+/* HEADER */
+.main-header {
+  background: black;
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-menu {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-menu img {
+  height: 48px;
+  margin-right: 10px;
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: red;
+}
+
+/* NAV */
+.nav-links {
+  display: flex;
+  gap: 14px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links a.active {
+  color: green;
+}
+
+.contact-btn {
+  background: red;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+/* CONTACT INFO */
+.contact-info a {
+  color: green;
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+/* HERO */
+.page-hero, .hero {
+  text-align: center;
+  padding: 120px 20px;
+  color: white;
+  text-shadow: 0 0 8px black;
+}
+
+.cta-btn {
+  background: red;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+/* FLOATING BUTTON */
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: green;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 10px black;
+  z-index: 999;
+}
+
+/* GALLERY */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 40px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px black;
+}
+
+/* TESTIMONIALS */
+.testimonial-list {
+  padding: 40px;
+}
+
+.testimonial-list article {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 6px solid green;
+  border-radius: 8px;
+}
+
+/* FAQ */
+.faq-list {
+  padding: 40px;
+}
+
+.faq-list article {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 6px solid red;
+  border-radius: 8px;
+}
+
+/* FORMS */
+form {
+  background: white;
+  padding: 20px;
+  margin: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px black;
+}
+
+form input, form textarea, form select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* LEAF ANIMATION */
+#leaf-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.leaf {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-image: url('/img/leaf.png');
+  background-size: cover;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  from { transform: translateY(-50px) rotate(0deg); }
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: black;
+    padding: 20px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  form {
+    margin: 20px;
+  }
+}
