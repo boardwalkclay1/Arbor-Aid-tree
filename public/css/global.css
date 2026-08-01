@@ -1,11 +1,13 @@
-/* GLOBAL RESET */
+/* ============================
+   GLOBAL RESET + BASE
+============================ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
+html, body {
   font-family: Arial, sans-serif;
   background-size: cover;
   background-position: center;
@@ -13,174 +15,275 @@ body {
   color: #111;
   opacity: 0;
   transition: opacity 0.8s ease;
+  scroll-behavior: smooth;
 }
 
 body.page-loaded {
   opacity: 1;
 }
 
-/* BACKGROUND CLASSES — EDIT THESE IMAGES */
-.bg-home { background-image: url('/img/arbor-index.jpg'); }
-.bg-services { background-image: url('/img/arbor-index.jpg'); }
-.bg-gallery { background-image: url('/img/arbor-index.jpg'); }
-.bg-testimonials { background-image: url('/img/arbor-index.jpg'); }
-.bg-areas { background-image: url('/img/arbor-index.jpg'); }
-.bg-faq { background-image: url('/img/arbor-index.jpg'); }
-.bg-emergency { background-image: url('/img/arbor-index.jpg'); }
-.bg-insurance { background-image: url('/img/arbor-index.jpg'); }
-.bg-about { background-image: url('/img/arbor-index.jpg'); }
-.bg-contact { background-image: url('/img/arbor-index.jpg'); }
-.bg-estimate { background-image: url('/img/arbor-index.jpg'); }
+/* ============================
+   BACKGROUND CLASSES
+============================ */
+.bg-home,
+.bg-services,
+.bg-gallery,
+.bg-testimonials,
+.bg-areas,
+.bg-faq,
+.bg-emergency,
+.bg-insurance,
+.bg-about,
+.bg-contact,
+.bg-estimate {
+  background-image: url('/img/arbor-index.jpg');
+  background-attachment: fixed;
+}
 
-/* HEADER */
+/* ============================
+   HEADER
+============================ */
 .main-header {
-  background: black;
+  background: rgba(0,0,0,0.85);
   color: white;
-  padding: 12px 20px;
+  padding: 14px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  backdrop-filter: blur(6px);
+  border-bottom: 2px solid rgba(255,255,255,0.1);
 }
 
 .logo-menu {
   display: flex;
   align-items: center;
   cursor: pointer;
+  gap: 12px;
 }
 
 .logo-menu img {
-  height: 48px;
-  margin-right: 10px;
+  height: 52px;
+  width: auto;
+  border-radius: 6px;
 }
 
 .brand-name {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
-  color: red;
+  color: #e63946;
+  letter-spacing: 1px;
 }
 
-/* NAV */
+/* ============================
+   NAVIGATION
+============================ */
 .nav-links {
   display: flex;
-  gap: 14px;
+  gap: 18px;
 }
 
 .nav-links a {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  padding: 6px 10px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #4CAF50;
+  transform: translateY(-2px);
 }
 
 .nav-links a.active {
-  color: green;
+  color: #4CAF50;
 }
 
 .contact-btn {
-  background: red;
-  padding: 6px 12px;
-  border-radius: 6px;
-}
-
-/* CONTACT INFO */
-.contact-info a {
-  color: green;
-  font-weight: bold;
-  margin-left: 12px;
-}
-
-/* HERO */
-.page-hero, .hero {
-  text-align: center;
-  padding: 120px 20px;
-  color: white;
-  text-shadow: 0 0 8px black;
-}
-
-.cta-btn {
-  background: red;
-  padding: 12px 20px;
+  background: #e63946;
+  padding: 8px 14px;
   border-radius: 8px;
+  transition: 0.3s;
+}
+
+.contact-btn:hover {
+  background: #ff4d5a;
+}
+
+/* ============================
+   CONTACT INFO
+============================ */
+.contact-info a {
+  color: #4CAF50;
+  font-weight: bold;
+  margin-left: 14px;
+  text-shadow: 0 0 4px black;
+}
+
+/* ============================
+   HERO SECTION
+============================ */
+.hero, .page-hero {
+  text-align: center;
+  padding: 140px 20px;
+  color: white;
+  text-shadow: 0 0 10px black;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ============================
+   CTA BUTTONS
+============================ */
+.cta-btn {
+  background: #e63946;
+  padding: 14px 24px;
+  border-radius: 10px;
   color: white;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 20px;
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 24px;
+  transition: 0.3s;
+  box-shadow: 0 0 10px black;
 }
 
-/* FLOATING BUTTON */
+.cta-btn:hover {
+  background: #ff4d5a;
+  transform: translateY(-3px);
+}
+
+.cta-btn.secondary {
+  background: #4CAF50;
+}
+
+.cta-btn.secondary:hover {
+  background: #5ecf63;
+}
+
+/* ============================
+   FLOATING CONTACT BUTTON (IMAGE)
+============================ */
 .floating-btn {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: green;
-  color: white;
-  padding: 14px 20px;
-  border-radius: 50px;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 0 10px black;
+  bottom: 22px;
+  right: 22px;
+  width: 90px;
+  height: 90px;
+  background-image: url('/img/med-float.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  box-shadow: 0 0 12px black;
   z-index: 999;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-/* GALLERY */
+.floating-btn:hover {
+  transform: scale(1.08);
+}
+
+/* ============================
+   SERVICE CARDS
+============================ */
+.service-card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  padding: 40px;
+}
+
+.service-card {
+  background: rgba(255,255,255,0.9);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 0 14px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ============================
+   GALLERY
+============================ */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
   padding: 40px;
 }
 
 .gallery-grid img {
   width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 0 10px black;
+  border-radius: 12px;
+  box-shadow: 0 0 12px black;
+  transition: 0.3s;
 }
 
-/* TESTIMONIALS */
-.testimonial-list {
-  padding: 40px;
+.gallery-grid img:hover {
+  transform: scale(1.05);
 }
 
+/* ============================
+   TESTIMONIALS
+============================ */
 .testimonial-list article {
-  background: white;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-left: 6px solid green;
-  border-radius: 8px;
+  background: rgba(255,255,255,0.95);
+  padding: 24px;
+  margin-bottom: 24px;
+  border-left: 6px solid #4CAF50;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
 }
 
-/* FAQ */
-.faq-list {
-  padding: 40px;
-}
-
+/* ============================
+   FAQ
+============================ */
 .faq-list article {
-  background: white;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-left: 6px solid red;
-  border-radius: 8px;
+  background: rgba(255,255,255,0.95);
+  padding: 24px;
+  margin-bottom: 24px;
+  border-left: 6px solid #e63946;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
 }
 
-/* FORMS */
+/* ============================
+   FORMS
+============================ */
 form {
-  background: white;
-  padding: 20px;
+  background: rgba(255,255,255,0.95);
+  padding: 24px;
   margin: 40px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px black;
+  border-radius: 12px;
+  box-shadow: 0 0 14px rgba(0,0,0,0.3);
 }
 
 form input, form textarea, form select {
   width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  border-radius: 6px;
+  padding: 14px;
+  margin-top: 12px;
+  margin-bottom: 24px;
+  border-radius: 8px;
   border: 1px solid #ccc;
+  font-size: 16px;
 }
 
-/* LEAF ANIMATION */
+/* ============================
+   LEAF ANIMATION
+============================ */
 #leaf-container {
   position: fixed;
   top: 0;
@@ -192,24 +295,27 @@ form input, form textarea, form select {
 
 .leaf {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   background-image: url('/img/leaf.png');
   background-size: cover;
   animation: fall linear forwards;
+  opacity: 0.9;
 }
 
 @keyframes fall {
-  from { transform: translateY(-50px) rotate(0deg); }
-  to { transform: translateY(110vh) rotate(360deg); }
+  from { transform: translateY(-60px) rotate(0deg); }
+  to { transform: translateY(120vh) rotate(360deg); }
 }
 
-/* MOBILE */
+/* ============================
+   MOBILE
+============================ */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
     flex-direction: column;
-    background: black;
+    background: rgba(0,0,0,0.9);
     padding: 20px;
   }
 
@@ -223,5 +329,9 @@ form input, form textarea, form select {
 
   form {
     margin: 20px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
   }
 }
