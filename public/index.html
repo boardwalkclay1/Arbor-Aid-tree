@@ -15,7 +15,7 @@
   <link rel="icon" href="/img/favicon.png" type="image/png">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/global.css">
@@ -24,14 +24,35 @@
 
 <body class="bg-home">
 
+<!-- ============================
+     HEADER
+============================ -->
 <header class="main-header">
+
+  <!-- LOGO + MENU BUTTON -->
   <div class="logo-menu" onclick="toggleMenu()">
     <img src="/img/arbor-aid-logo.jpg" alt="Arbor Aid Logo">
     <span class="brand-name header-font">ARBOR AID TREE SERVICE</span>
   </div>
 
-  <nav id="mainNav" class="nav-links">
+  <!-- TOP NAV: ONLY HOME -->
+  <nav class="top-nav">
     <a href="/index.html" class="btn-link link-font active">Home</a>
+  </nav>
+
+  <!-- CONTACT INFO -->
+  <div class="contact-info">
+    <a href="tel:+14045673819" class="btn-link link-font phone">📞 (404) 567‑3819</a>
+    <a href="mailto:victor@arbor-aid.com" class="btn-link link-font email">✉️ victor@arbor-aid.com</a>
+  </div>
+</header>
+
+<!-- ============================
+     SLIDE-OUT MENU
+============================ -->
+<div id="sideMenu" class="side-menu">
+  <div class="side-menu-inner">
+
     <a href="/pages/services.html" class="btn-link link-font">Services</a>
     <a href="/pages/gallery.html" class="btn-link link-font">Gallery</a>
     <a href="/pages/testimonials.html" class="btn-link link-font">Testimonials</a>
@@ -41,15 +62,18 @@
     <a href="/pages/insurance.html" class="btn-link link-font">Insurance</a>
     <a href="/pages/about.html" class="btn-link link-font">About</a>
     <a href="/pages/estimate.html" class="btn-link link-font">Estimate</a>
-    <a href="/pages/contact.html" class="btn-link link-font contact-btn">Contact</a>
-  </nav>
+    <a href="/pages/contact.html" class="btn-link link-font">Contact</a>
 
-  <div class="contact-info">
-    <a href="tel:+14045673819" class="btn-link link-font phone">📞 (404) 567‑3819</a>
-    <a href="mailto:victor@arbor-aid.com" class="btn-link link-font email">✉️ victor@arbor-aid.com</a>
+    <hr>
+
+    <a href="/admin/index.html" class="btn-link link-font admin-link">Owner Login (Victor)</a>
+
   </div>
-</header>
+</div>
 
+<!-- ============================
+     HERO
+============================ -->
 <section class="hero">
   <div class="hero-top-row">
     <div class="hero-main">
@@ -64,6 +88,9 @@
   </div>
 </section>
 
+<!-- ============================
+     TRUST BADGES
+============================ -->
 <section class="trust-badges">
   <div class="btn-link link-font">✅ Fully Insured</div>
   <div class="btn-link link-font">✅ Locally Owned</div>
@@ -71,6 +98,9 @@
   <div class="btn-link link-font">✅ Free Estimates</div>
 </section>
 
+<!-- ============================
+     CORE SERVICES
+============================ -->
 <section class="service-highlights">
   <h2 class="header-font">Core Services</h2>
 
@@ -101,12 +131,14 @@
   </div>
 </section>
 
+<!-- ============================
+     OWNER INTRO
+============================ -->
 <section class="owner-intro">
   <h2 class="header-font">Meet the Owner — Victor Robinson</h2>
   <p>
     Arbor Aid Tree Service is owned and operated by <strong>Victor Robinson</strong>,
-    serving Atlanta with honest, professional tree care. Every job is treated like
-    it’s his own property — safe, clean, and done right.
+    serving Atlanta with honest, professional tree care.
   </p>
   <p>
     Victor personally oversees complex removals, storm damage work, and large
@@ -115,6 +147,9 @@
   <a href="/pages/about.html" class="btn-link link-font cta-link">More about Victor</a>
 </section>
 
+<!-- ============================
+     MINI GALLERY
+============================ -->
 <section class="mini-gallery">
   <h2 class="header-font">Before & After</h2>
   <div class="gallery-row">
@@ -125,12 +160,18 @@
   <a href="/pages/gallery.html" class="btn-link link-font cta-link">View Full Gallery</a>
 </section>
 
+<!-- ============================
+     TESTIMONIALS
+============================ -->
 <section class="home-testimonials">
   <h2 class="header-font">What Customers Say</h2>
   <div class="testimonial-snippets" id="homeTestimonials"></div>
   <a href="/pages/testimonials.html" class="btn-link link-font cta-link">Read all reviews</a>
 </section>
 
+<!-- ============================
+     FAQ
+============================ -->
 <section class="home-faq">
   <h2 class="header-font">Quick Answers</h2>
   <ul>
@@ -141,12 +182,18 @@
   </ul>
 </section>
 
+<!-- ============================
+     SERVICE AREAS
+============================ -->
 <section class="home-service-areas">
   <h2 class="header-font">Service Areas</h2>
   <p>We proudly serve Atlanta, Decatur, East Point, College Park, Marietta, Smyrna, and more.</p>
   <a href="/pages/service-areas.html" class="btn-link link-font cta-link">View full service map</a>
 </section>
 
+<!-- ============================
+     CTA SECTION
+============================ -->
 <section class="cta-section">
   <h2 class="header-font">Ready for Safe, Professional Tree Service?</h2>
   <p>Call now or request a free estimate online.</p>
@@ -158,6 +205,9 @@
   </div>
 </section>
 
+<!-- ============================
+     FOOTER
+============================ -->
 <footer class="footer">
   <p>© 2026 Arbor Aid Tree Service — Owner: Victor Robinson</p>
   <p>Serving Atlanta and surrounding areas</p>
